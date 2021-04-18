@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect } from "react";
 import "./../scss/chat.scss";
 import { useChat } from "../hooks/useChat";
 
@@ -16,22 +16,48 @@ export default function Chat() {
     handleClickRoom3,
   } = useChat();
 
-  console.log(messages);
-  console.log(roomSelected);
+  useEffect(() => {
+    console.log("dentro del useffect");
+    let div = document.querySelector("#myChat");
+    if (div) {
+      console.log("haciendo scroll hacia abajo");
+      div.scrollTop = div.scrollHeight - div.clientHeight;
+    }
+  }, [roomSelected, messages]);
   return (
     <div className="chat">
       <div className="chat__container">
         <div>
-          <button onClick={handleClickRoom}>room1</button>
-          <button onClick={handleClickRoom2}>room2</button>
-          <button onClick={handleClickRoom3}>room3</button>
+          <button
+            disabled={rooms === "room1" ? true : false}
+            onClick={handleClickRoom}
+          >
+            room1
+          </button>
+          <button
+            disabled={rooms === "room2" ? true : false}
+            onClick={handleClickRoom2}
+          >
+            room2
+          </button>
+          <button
+            disabled={rooms === "room3" ? true : false}
+            onClick={handleClickRoom3}
+          >
+            room3
+          </button>
         </div>
         <div className="chat__buttonClosesesion">
-          <button onClick={closeSesion}>Close Sesion</button>
+          <button
+            onClick={closeSesion}
+            disabled={rooms === null ? true : false}
+          >
+            Close Sesion
+          </button>
         </div>
         <form className="chat__formular" onSubmit={handleSubmitMessage}>
           {roomSelected === rooms ? (
-            <div className="chat__content">
+            <div className="chat__content" id="myChat">
               <h1>Wellcome to the Room: {rooms}</h1>
               {messages?.map((message) => (
                 <>{<p>{message.message}</p>}</>

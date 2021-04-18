@@ -5,7 +5,7 @@
   width: 95%;
   margin: 0 auto;
   display: flex;
-  height: 95vh;
+  height: 70vh;
   justify-content: center;
 
   .chat__formular {
@@ -17,14 +17,30 @@
     border: 1px solid lightgrey;
 
     .chat__content {
-      flex: 0 1 95%;
+      flex: 0 1 90%;
+      overflow-y: scroll;
       border-bottom: 1px solid lightgrey;
       padding: 2rem;
       background-color: rgb(230, 230, 230);
     }
+    .chat__content::-webkit-scrollbar {
+      background-color: blue;
+      width: 3px;
+    }
+
+    .chat__content::-webkit-scrollbar-thumb {
+      background-color: rgb(48, 136, 172);
+      width: 3px;
+    }
+    .chat__content::-webkit-scrollbar-track {
+      background-color: rgb(211, 211, 211);
+      width: 3px;
+      height: 30px;
+    }
+
     .chat__input {
       padding: 0.5rem;
-      flex: 0 1 5%;
+      flex: 0 1 8%;
       display: flex;
       background-color: rgb(206, 206, 206);
       input {

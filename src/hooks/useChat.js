@@ -8,35 +8,39 @@ export function useChat() {
   const [rooms, setRooms] = useState(null);
   const [roomSelected, setRoomSelected] = useState("");
   const socketRef = useRef();
-
+  console.log("hola soy el room: ", rooms);
   const SOCKET_NODEURL = "http://localhost:4000";
   const ROOM_TO_CONNECT = "roomTest";
   const RECIVO_MENSAJE = "recivoMensaje";
-
+  console.log(rooms);
   useEffect(() => {
+    // CONEXION DEL SOCKET IO HACIA LOCALHOST PASANDOLE COMO PARAMETRO QUERY EL ROOM ACTUAL
     socketRef.current = socketIoClient(SOCKET_NODEURL, {
       query: { rooms: rooms },
     });
     // recibimos los mensajes desde el server con socketio
-
-    socketRef.current.on(RECIVO_MENSAJE, (data) => {
-      const { info, room } = data;
-      console.log("El room es :", room);
-      setRoomSelected(room);
-      setMessages(info);
-    });
+    if (rooms !== null) {
+      socketRef.current.on(RECIVO_MENSAJE, (data) => {
+        const { info, room } = data;
+        console.log("El room es :", room);
+        setRoomSelected(room);
+        setMessages(info);
+      });
+    }
 
     return () => {
       socketRef.current.disconnect();
     };
   }, [messages, rooms]);
-
+  // FUNCION QUE ENVIA LOS MENSAJES PRIMERO HACIA EL SOCKET
   function handleSubmitMessage(e) {
     e.preventDefault();
+    // SOCKET IO EMIT DEL MENSAJE
     socketRef.current.emit(ROOM_TO_CONNECT, {
       mensaje: message,
       userId: socketRef.current.id,
     });
+    // FETCH HACIA LA API PARA GUARDAR LOS MENSAJES EN LA BASE DE DATOS
     fetch(`${SOCKET_NODEURL}/api/message`, {
       method: "POST",
       headers: {
@@ -50,11 +54,12 @@ export function useChat() {
     });
     setMessage("");
   }
+  // DESCONEXION MANUAL DEL SOCKET IO
   function closeSesion() {
     socketRef.current.disconnect();
     setRooms(null);
   }
-
+  // FUNCION PARA SETEAR EL ROOM ACTUAL Y PODER OBTENER LA DATA DEL ROOM SELECCIONADO
   function handleClickRoom(e) {
     e.preventDefault();
     const ROOM = "room1";
