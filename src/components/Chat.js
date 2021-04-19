@@ -1,29 +1,26 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "./../scss/chat.scss";
 import { useChat } from "../hooks/useChat";
+import Avatar from "@material-ui/core/Avatar";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 export default function Chat() {
   const {
     message,
+    visible,
+    circle,
     messages,
     rooms,
     roomSelected,
     setMessage,
     handleSubmitMessage,
     closeSesion,
+    handleScroll,
     handleClickRoom,
     handleClickRoom2,
     handleClickRoom3,
   } = useChat();
-
-  useEffect(() => {
-    console.log("dentro del useffect");
-    let div = document.querySelector("#myChat");
-    if (div) {
-      console.log("haciendo scroll hacia abajo");
-      div.scrollTop = div.scrollHeight - div.clientHeight;
-    }
-  }, [roomSelected, messages]);
+  console.log(messages);
   return (
     <div className="chat">
       <div className="chat__container">
@@ -57,10 +54,30 @@ export default function Chat() {
         </div>
         <form className="chat__formular" onSubmit={handleSubmitMessage}>
           {roomSelected === rooms ? (
-            <div className="chat__content" id="myChat">
+            <div className="chat__content" id="myChat" onScroll={handleScroll}>
               <h1>Wellcome to the Room: {rooms}</h1>
-              {messages?.map((message) => (
-                <>{<p>{message.message}</p>}</>
+              {circle ? (
+                <div className="chat__circle">
+                  <CircularProgress />
+                </div>
+              ) : null}
+              {messages?.slice(visible).map((message) => (
+                <>
+                  <div className="chat__message">
+                    <div className="chat__avatar">
+                      <Avatar
+                        alt="Remy Sharp"
+                        src="/static/images/avatar/1.jpg"
+                      />
+                      <p>{message.message}</p>
+                    </div>
+                    <div className="chat__date">
+                      <p>
+                        {new Date(message.created).toTimeString().slice(0, 8)}
+                      </p>
+                    </div>
+                  </div>
+                </>
               ))}
             </div>
           ) : (

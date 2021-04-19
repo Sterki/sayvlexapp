@@ -1,5 +1,3 @@
-.chat {
-}
 .chat__container {
   max-width: 1200px;
   width: 95%;
@@ -10,12 +8,37 @@
 
   .chat__formular {
     margin-top: 2rem;
+    position: relative;
     max-width: 800px;
     width: 95%;
     display: flex;
     flex-direction: column;
     border: 1px solid lightgrey;
+    .chat__circle {
+      display: flex;
+      justify-content: center;
 
+      .MuiCircularProgress-root {
+        color: rgb(48, 136, 172);
+      }
+    }
+    .chat__message {
+      display: flex;
+      padding: 0.5rem 0.5rem 0.5rem 0rem;
+      align-items: center;
+      justify-content: space-between;
+      .chat__avatar {
+        display: flex;
+        align-items: center;
+
+        p {
+          margin-left: 1rem;
+          padding: 0.7rem;
+          background-color: #dcf8c6;
+          border-radius: 25px;
+        }
+      }
+    }
     .chat__content {
       flex: 0 1 90%;
       overflow-y: scroll;
