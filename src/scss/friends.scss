@@ -1,0 +1,28 @@
+@import "./variables";
+.friends {
+  width: 100%;
+  border-top: 0.1px solid $borderColor;
+  padding: 0.5rem;
+  cursor: pointer;
+  transition: all 0.1s;
+  &:hover {
+    background-color: $backgroundPrincipal;
+  }
+}
+.friends__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .friends__info {
+    display: flex;
+    align-items: center;
+    p {
+      margin-left: 1rem;
+    }
+  }
+  .friends__date {
+    display: flex;
+    justify-content: flex-end;
+  }
+}

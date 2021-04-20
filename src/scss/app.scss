@@ -1,5 +1,7 @@
+@import "./variables";
 * {
   margin: 0;
+  box-sizing: border-box;
 }
 body {
   margin: 0;
@@ -9,8 +11,24 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+.app {
+  display: flex;
+  .app__sidebarleft {
+    flex: 0 1 20%;
+    border-right: $backgroundPrincipal;
+  }
+  .app__chatcontainer {
+    flex: 0 1 60%;
+    background-color: $backgroundThird;
+  }
+  .app__sidebarright {
+    flex: 0 1 20%;
+    border-left: 1px solid $borderColor;
+    background-color: $backgroundPrincipal;
+    color: white;
+  }
 }

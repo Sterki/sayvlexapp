@@ -1,0 +1,52 @@
+.sidebar {
+  max-width: 300px;
+  width: 95%;
+  background-color: #0044cc;
+  height: 100vh;
+  min-width: 230px;
+  color: white;
+}
+
+.sidebar .sidebar__container {
+  height: 100%;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+}
+
+.sidebar .sidebar__container .sidebar__header {
+  -webkit-flex: 0 1 5%;
+  flex: 0 1 5%;
+  padding: 0.5rem;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  -webkit-align-items: center;
+  align-items: center;
+}
+
+.sidebar .sidebar__container .sidebar__title {
+  -webkit-flex: 0 1 5%;
+  flex: 0 1 5%;
+  background-color: #003399;
+  padding: 0.5rem;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  -webkit-align-items: center;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.sidebar .sidebar__container .sidebar__friendlist {
+  -webkit-flex: 0 1 90%;
+  flex: 0 1 90%;
+  display: -webkit-flex;
+  display: flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+}

@@ -1,0 +1,32 @@
+.friends {
+  width: 100%;
+  border-top: 0.1px solid #4d88ff;
+  padding: 0.5rem;
+}
+
+.friends__container {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  -webkit-align-items: center;
+  align-items: center;
+}
+
+.friends__container .friends__info {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+  align-items: center;
+}
+
+.friends__container .friends__info p {
+  margin-left: 1rem;
+}
+
+.friends__container .friends__date {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: flex-end;
+  justify-content: flex-end;
+}

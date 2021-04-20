@@ -1,25 +1,20 @@
+@import "./variables";
 .chat__container {
-  max-width: 1200px;
-  width: 95%;
-  margin: 0 auto;
   display: flex;
-  height: 70vh;
-  justify-content: center;
+  height: 93.3vh;
 
   .chat__formular {
-    margin-top: 2rem;
     position: relative;
-    max-width: 800px;
-    width: 95%;
+    width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
-    border: 1px solid lightgrey;
+
     .chat__circle {
       display: flex;
       justify-content: center;
-
       .MuiCircularProgress-root {
-        color: rgb(48, 136, 172);
+        color: rgb(255, 255, 255);
       }
     }
     .chat__message {
@@ -38,13 +33,17 @@
           border-radius: 25px;
         }
       }
+      .chat__date {
+        p {
+          color: lightgray;
+        }
+      }
     }
     .chat__content {
-      flex: 0 1 90%;
+      flex: 0 1 95%;
       overflow-y: scroll;
-      border-bottom: 1px solid lightgrey;
       padding: 2rem;
-      background-color: rgb(230, 230, 230);
+      background-color: $backgroundThird;
     }
     .chat__content::-webkit-scrollbar {
       background-color: blue;
@@ -65,7 +64,8 @@
       padding: 0.5rem;
       flex: 0 1 8%;
       display: flex;
-      background-color: rgb(206, 206, 206);
+      border-top: 1px solid $borderColor;
+      background-color: $backgroundThird;
       input {
         flex: 0 1 80%;
         border: 1px solid lightgrey;

@@ -1,19 +1,28 @@
 import { useEffect, useRef, useState } from "react";
 import "./../scss/chat.scss";
 import socketIoClient from "socket.io-client";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  roomSelectedAction,
+  roomToConnectAction,
+  setMessageArrayAction,
+  setMessagesAction,
+} from "../actions/usersAction";
 
 export function useChat() {
   const [message, setMessage] = useState("");
-  const [messages, setMessages] = useState([]);
-  const [rooms, setRooms] = useState(null);
-  const [roomSelected, setRoomSelected] = useState("");
   const [visible, setVisible] = useState(-20);
   const [circle, setCircle] = useState(false);
+  const dispatch = useDispatch();
+  const rooms = useSelector((state) => state.user.roomsRedux);
+  const roomSelected = useSelector((state) => state.user.roomSelected);
+  const messages = useSelector((state) => state.user.messages);
   const socketRef = useRef();
 
   const SOCKET_NODEURL = "http://localhost:4000";
   const ROOM_TO_CONNECT = "roomTest";
   const RECIVO_MENSAJE = "recivoMensaje";
+
   useEffect(() => {
     // CONEXION DEL SOCKET IO HACIA LOCALHOST PASANDOLE COMO PARAMETRO QUERY EL ROOM ACTUAL
     socketRef.current = socketIoClient(SOCKET_NODEURL, {
@@ -22,18 +31,16 @@ export function useChat() {
     // recibimos los mensajes desde el server con socketio
     if (rooms !== null) {
       socketRef.current.on(RECIVO_MENSAJE, (data) => {
-        console.log(data);
         const { info, room } = data;
-        console.log("El room es :", room);
-        setRoomSelected(room);
-        setMessages(info);
+        dispatch(roomSelectedAction(room));
+        dispatch(setMessagesAction(info));
       });
     }
 
     return () => {
       socketRef.current.disconnect();
     };
-  }, [messages, rooms]);
+  }, [messages, dispatch, rooms]);
   useEffect(() => {
     let div = document.querySelector("#myChat");
     if (div) {
@@ -79,33 +86,27 @@ export function useChat() {
   // DESCONEXION MANUAL DEL SOCKET IO
   function closeSesion() {
     socketRef.current.disconnect();
-    setRooms(null);
   }
   // FUNCION PARA SETEAR EL ROOM ACTUAL Y PODER OBTENER LA DATA DEL ROOM SELECCIONADO
   function handleClickRoom(e) {
+    console.log("hola desde el click1");
     e.preventDefault();
     const ROOM = "room1";
-    setMessages([]);
-    setRooms(ROOM);
+
+    dispatch(setMessageArrayAction());
+
+    dispatch(roomToConnectAction(ROOM));
     fetch(`${SOCKET_NODEURL}/api/message/${ROOM}`)
       .then((resp) => {
         resp.json().then((res) => {
           const { message, roomname } = res;
-          setRoomSelected(roomname);
-          setMessages(message);
+
+          dispatch(roomSelectedAction(roomname));
+          dispatch(roomToConnectAction(ROOM));
+          dispatch(setMessagesAction(message));
         });
       })
       .catch((error) => console.log("error eb la url", error));
-  }
-  function handleClickRoom2() {
-    const ROOM = "room2";
-    setMessages([]);
-    setRooms(ROOM);
-  }
-  function handleClickRoom3() {
-    const ROOM = "room3";
-    setMessages([]);
-    setRooms(ROOM);
   }
 
   return {
@@ -113,14 +114,11 @@ export function useChat() {
     circle,
     visible,
     messages,
-    rooms,
     roomSelected,
     setMessage,
     handleSubmitMessage,
     closeSesion,
     handleScroll,
     handleClickRoom,
-    handleClickRoom2,
-    handleClickRoom3,
   };
 }
