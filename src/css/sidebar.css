@@ -1,7 +1,5 @@
 .sidebar {
-  max-width: 300px;
-  width: 95%;
-  background-color: #0044cc;
+  background-color: #666699;
   height: 100vh;
   min-width: 230px;
   color: white;
@@ -25,12 +23,13 @@
   justify-content: space-between;
   -webkit-align-items: center;
   align-items: center;
+  background-color: #5c5c8a;
 }
 
 .sidebar .sidebar__container .sidebar__title {
   -webkit-flex: 0 1 5%;
   flex: 0 1 5%;
-  background-color: #003399;
+  background-color: #5c5c8a;
   padding: 0.5rem;
   display: -webkit-flex;
   display: flex;
@@ -39,6 +38,10 @@
   -webkit-align-items: center;
   align-items: center;
   margin-bottom: 1rem;
+}
+
+.sidebar .sidebar__container .sidebar__title .MuiSvgIcon-root {
+  cursor: pointer;
 }
 
 .sidebar .sidebar__container .sidebar__friendlist {

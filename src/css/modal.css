@@ -1,0 +1,75 @@
+.modal {
+  position: absolute;
+  max-width: 400px;
+  width: 95%;
+  top: 11%;
+  left: 2%;
+  background-color: #e0e0eb;
+  z-index: 2;
+  padding: 2rem;
+  border-radius: 5px;
+  border: 1px solid #5c5c8a;
+  box-shadow: 1px 1px 4px 1px #5c5c8a;
+}
+
+.modal .MuiSvgIcon-root {
+  position: absolute;
+  top: 0%;
+  left: 94%;
+  background-color: #3d3d5c;
+  border-radius: 0px 3px 0px 3px;
+  cursor: pointer;
+  color: #e0e0eb;
+  transition: all 0.2s;
+}
+
+.modal .MuiSvgIcon-root:hover {
+  color: white;
+}
+
+.modal .modal__form {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+}
+
+.modal .modal__form .modal__input {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.modal .modal__form .modal__input input {
+  width: 100%;
+  margin-right: 1rem;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  outline: none;
+  transition: all 0.2s;
+}
+
+.modal .modal__form .modal__input input:hover {
+  border: 1px solid #47476b;
+}
+
+.modal .modal__form .modal__input input:focus {
+  border: 1px solid #47476b;
+}
+
+.modal .modal__form .modal__input button {
+  color: #e0e0eb;
+  background-color: #3d3d5c;
+  padding: 0.6rem;
+  letter-spacing: 0.2em;
+  border: none;
+  border-radius: 3px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.modal .modal__form .modal__input button:hover {
+  background-color: #47476b;
+}

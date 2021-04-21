@@ -1,24 +1,17 @@
 .chat__container {
-  max-width: 1500px;
-  width: 95%;
-  margin: 0 auto;
   display: -webkit-flex;
   display: flex;
-  height: 70vh;
-  -webkit-justify-content: center;
-  justify-content: center;
+  height: 93.3vh;
 }
 
 .chat__container .chat__formular {
-  margin-top: 2rem;
   position: relative;
-  max-width: 800px;
-  width: 95%;
+  width: 100%;
+  height: 100%;
   display: -webkit-flex;
   display: flex;
   -webkit-flex-direction: column;
   flex-direction: column;
-  border: 1px solid lightgrey;
 }
 
 .chat__container .chat__formular .chat__circle {
@@ -29,7 +22,7 @@
 }
 
 .chat__container .chat__formular .chat__circle .MuiCircularProgress-root {
-  color: #3088ac;
+  color: white;
 }
 
 .chat__container .chat__formular .chat__message {
@@ -52,17 +45,20 @@
 .chat__container .chat__formular .chat__message .chat__avatar p {
   margin-left: 1rem;
   padding: 0.7rem;
-  background-color: #dcf8c6;
+  background-color: #66667a;
   border-radius: 25px;
 }
 
+.chat__container .chat__formular .chat__message .chat__date p {
+  color: lightgray;
+}
+
 .chat__container .chat__formular .chat__content {
-  -webkit-flex: 0 1 90%;
-  flex: 0 1 90%;
+  -webkit-flex: 0 1 95%;
+  flex: 0 1 95%;
   overflow-y: scroll;
-  border-bottom: 1px solid lightgrey;
   padding: 2rem;
-  background-color: #e6e6e6;
+  background-color: #7575a3;
 }
 
 .chat__container .chat__formular .chat__content::-webkit-scrollbar {
@@ -87,7 +83,8 @@
   flex: 0 1 8%;
   display: -webkit-flex;
   display: flex;
-  background-color: #cecece;
+  border-top: 1px solid #8585ad;
+  background-color: #7575a3;
 }
 
 .chat__container .chat__formular .chat__input input {

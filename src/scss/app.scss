@@ -10,10 +10,23 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: $backgroundThird;
+  overflow-x: hidden;
 }
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+h1,
+h2,
+h3 {
+  color: $colorText;
+}
+label {
+  color: $colorText;
+}
+p {
+  color: $colorText;
 }
 .app {
   display: flex;

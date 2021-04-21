@@ -1,0 +1,65 @@
+@import "./variables";
+.modal {
+  position: absolute;
+  max-width: 400px;
+  width: 95%;
+  top: 11%;
+  left: 2%;
+  background-color: $colorText;
+  z-index: 2;
+  padding: 2rem;
+  border-radius: 5px;
+  border: 1px solid $backgroundPrincipal;
+  box-shadow: 1px 1px 4px 1px $backgroundPrincipal;
+  .MuiSvgIcon-root {
+    position: absolute;
+    top: 0%;
+    left: 94%;
+    background-color: $buttonBackground;
+    border-radius: 0px 3px 0px 3px;
+    cursor: pointer;
+    color: $colorText;
+    transition: all 0.2s;
+    &:hover {
+      color: white;
+    }
+  }
+  .modal__form {
+    display: flex;
+    flex-direction: column;
+    .modal__input {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+      input {
+        width: 100%;
+        margin-right: 1rem;
+        border: 1px solid transparent;
+        border-radius: 3px;
+        outline: none;
+        transition: all 0.2s;
+
+        &:hover {
+          border: 1px solid $backgroundHover;
+        }
+        &:focus {
+          border: 1px solid $backgroundHover;
+        }
+      }
+      button {
+        color: $colorText;
+        background-color: $buttonBackground;
+        padding: 0.6rem;
+        letter-spacing: 0.2em;
+        border: none;
+        border-radius: 3px;
+        text-transform: uppercase;
+        cursor: pointer;
+
+        &:hover {
+          background-color: $backgroundHover;
+        }
+      }
+    }
+  }
+}

@@ -1,7 +1,13 @@
 .friends {
   width: 100%;
-  border-top: 0.1px solid #4d88ff;
+  border-top: 0.1px solid #8585ad;
   padding: 0.5rem;
+  cursor: pointer;
+  transition: all 0.1s;
+}
+
+.friends:hover {
+  background-color: #5c5c8a;
 }
 
 .friends__container {
