@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap");
 .sidebar {
-  background-color: #666699;
+  background-color: #5c5c8a;
   height: 100vh;
   min-width: 230px;
   color: white;
@@ -17,7 +17,7 @@
 .sidebar .sidebar__container .sidebar__header {
   -webkit-flex: 0 1 5%;
   flex: 0 1 5%;
-  padding: 0.5rem;
+  padding: 1rem;
   display: -webkit-flex;
   display: flex;
   -webkit-justify-content: space-between;

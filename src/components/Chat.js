@@ -1,7 +1,6 @@
 import React from "react";
 import "./../scss/chat.scss";
 import { useChat } from "../hooks/useChat";
-
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { useSelector, useDispatch } from "react-redux";
 import { setMessageAction } from "../actions/usersAction";

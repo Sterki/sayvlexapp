@@ -3,3 +3,24 @@
   background-color: #5c5c8a;
   color: white;
 }
+
+.header .header__container {
+  display: -webkit-flex;
+  display: flex;
+  padding: 0.7rem;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  -webkit-align-items: center;
+  align-items: center;
+}
+
+.header .header__container .header__icon {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+  align-items: center;
+}
+
+.header .header__container .header__icon p {
+  margin-left: 1rem;
+}

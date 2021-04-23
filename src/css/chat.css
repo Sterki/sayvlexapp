@@ -1,8 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap");
+.chat {
+  background-color: #5c5c8a;
+}
+
 .chat__container {
   display: -webkit-flex;
   display: flex;
   height: 93.3vh;
+  border-radius: 20px 0px 0px 0px;
 }
 
 .chat__container .chat__formular {
@@ -11,8 +16,11 @@
   height: 100%;
   display: -webkit-flex;
   display: flex;
+  border-radius: 20px 0px 0px 0px;
   -webkit-flex-direction: column;
   flex-direction: column;
+  background-image: url(../static//img/dcecf9b2.png);
+  background-repeat: repeat;
 }
 
 .chat__container .chat__formular .chat__circle {
@@ -43,11 +51,17 @@
   align-items: center;
 }
 
-.chat__container .chat__formular .chat__message .chat__avatar p {
-  margin-left: 1rem;
-  padding: 0.7rem;
-  background-color: #66667a;
+.chat__container .chat__formular .chat__message .chat__avatar .chat__mensaje {
+  word-wrap: break-word;
+  max-width: 400px;
+  width: 95%;
+  background-color: rgba(0, 0, 0, 0.2);
   border-radius: 25px;
+  margin-left: 1rem;
+}
+
+.chat__container .chat__formular .chat__message .chat__avatar .chat__mensaje p {
+  padding: 0.7rem;
 }
 
 .chat__container .chat__formular .chat__message .chat__date p {
@@ -59,7 +73,10 @@
   flex: 0 1 95%;
   overflow-y: scroll;
   padding: 2rem;
-  background-color: #7575a3;
+  border: 1px solid #7575a3;
+  border-radius: 20px 0px 0px 0px;
+  background-image: url(../static//img/dcecf9b2.png);
+  background-repeat: repeat;
 }
 
 .chat__container .chat__formular .chat__content::-webkit-scrollbar {
@@ -85,7 +102,8 @@
   display: -webkit-flex;
   display: flex;
   border-top: 1px solid #8585ad;
-  background-color: #7575a3;
+  background-image: url(../static//img/dcecf9b2.png);
+  background-repeat: repeat;
 }
 
 .chat__container .chat__formular .chat__input input {
@@ -101,11 +119,19 @@
 .chat__container .chat__formular .chat__input button {
   -webkit-flex: 0 1 20%;
   flex: 0 1 20%;
-  border: none;
-  background-color: #3088ac;
-  color: white;
-  text-transform: uppercase;
+  color: #e0e0eb;
+  background-color: #3d3d5c;
+  padding: 1rem;
   letter-spacing: 0.2em;
-  border-radius: 10px;
+  border: none;
+  border-radius: 3px;
+  text-transform: uppercase;
   cursor: pointer;
+  transition: all 0.2s;
+  outline: none;
+}
+
+.chat__container .chat__formular .chat__input button:hover {
+  background-color: #47476b;
+  color: white;
 }

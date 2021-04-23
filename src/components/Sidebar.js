@@ -4,8 +4,9 @@ import AddIcon from "@material-ui/icons/Add";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import Friends from "./Friends";
-import Tooltip from "@material-ui/core/Tooltip";
 import Modal from "./Modal";
+import { LightTooltip } from "./ui/tooltip";
+
 export default function Sidebar() {
   const [open, setOpen] = useState(false);
   return (
@@ -21,9 +22,9 @@ export default function Sidebar() {
           </div>
           <div className="sidebar__title">
             <h1>Friend List</h1>
-            <Tooltip title="Add friends">
+            <LightTooltip title="Add friends" arrow={true}>
               <AddIcon onClick={() => setOpen(true)} />
-            </Tooltip>
+            </LightTooltip>
           </div>
           <div className="sidebar__friendlist">
             <Friends />
