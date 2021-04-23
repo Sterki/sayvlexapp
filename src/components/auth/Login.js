@@ -35,10 +35,19 @@ export default function Login() {
       <div className="register__container">
         <form className="register__formular">
           <h1>Login</h1>
-          <EmailIcon />
-          <input type="text" placeholder="example@email.com ..." name="email" />
-          <VpnKeyIcon />
-          <input type="password" name="password" />
+          <div className="register__inputs">
+            <EmailIcon />
+            <input
+              type="text"
+              placeholder="example@email.com ..."
+              name="email"
+            />
+          </div>
+          <div className="register__inputs">
+            <VpnKeyIcon />
+            <input type="password" name="password" />
+          </div>
+
           <button
             type="submit"
             onClick={handleClickLogin}

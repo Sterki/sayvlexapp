@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import "./../../scss/register.scss";
+import "./../../scss/login.scss";
 import Checkbox from "@material-ui/core/Checkbox";
 import { motion } from "framer-motion";
 import { useFormular } from "./../../hooks/useFormular";
@@ -26,13 +26,13 @@ const INISIAL_STATE = {
 };
 
 export default function Register() {
-  const [checked, setChecked] = useState(false);
-  const { handleChangeFormular, handleSubmitUserForm } = useFormular(
-    INISIAL_STATE
-  );
-  const handleChange = (event) => {
-    setChecked(event.target.checked);
-  };
+  const {
+    checked,
+    handleChangeFormular,
+    handleSubmitUserForm,
+    handleChange,
+  } = useFormular(INISIAL_STATE);
+
   return (
     <motion.div
       className="register"

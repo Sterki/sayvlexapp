@@ -8,7 +8,8 @@ body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #7575a3;
+  background-image: url(../static//img/dcecf9b2.png);
+  background-repeat: repeat;
   overflow-x: hidden;
   font-family: "Nunito", sans-serif;
 }
