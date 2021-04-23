@@ -1,4 +1,5 @@
 import {
+  CREATE_NEW_USER,
   ROOM_SELECTED,
   ROOM_TO_CONNECT,
   SET_MESSAGE,
@@ -50,4 +51,14 @@ export function setMessageArrayAction() {
 }
 const setMessageArray = () => ({
   type: SET_MESSAGE_ARRAY,
+});
+
+export function createNewUserAction(token) {
+  return (dispatch) => {
+    dispatch(createNewUser(token));
+  };
+}
+const createNewUser = (token) => ({
+  type: CREATE_NEW_USER,
+  payload: token,
 });

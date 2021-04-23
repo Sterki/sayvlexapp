@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import "./../../scss/register.scss";
 import Checkbox from "@material-ui/core/Checkbox";
 import { motion } from "framer-motion";
+import { useFormular } from "./../../hooks/useFormular";
 
 const containerVarianst = {
   hidden: {
@@ -16,8 +17,19 @@ const containerVarianst = {
   },
 };
 
+const INISIAL_STATE = {
+  name: "",
+  username: "",
+  email: "",
+  password: "",
+  confirm: "",
+};
+
 export default function Register() {
   const [checked, setChecked] = useState(false);
+  const { handleChangeFormular, handleSubmitUserForm } = useFormular(
+    INISIAL_STATE
+  );
   const handleChange = (event) => {
     setChecked(event.target.checked);
   };
@@ -29,19 +41,44 @@ export default function Register() {
       animate="show"
     >
       <div className="register__container">
-        <form className="register__formular">
+        <form className="register__formular" onSubmit={handleSubmitUserForm}>
           <h1>Create an Account</h1>
           <label>Name & LastName</label>
-          <input type="text" placeholder="Bill gates ..." name="name" />
+          <input
+            type="text"
+            placeholder="Bill gates ..."
+            name="name"
+            onChange={handleChangeFormular}
+          />
           <label>Username (Nickname)</label>
-          <input type="text" placeholder="DrDisrespect ..." name="username" />
+          <input
+            type="text"
+            placeholder="DrDisrespect ..."
+            name="username"
+            onChange={handleChangeFormular}
+          />
           <label>Email</label>
-          <input type="text" placeholder="example@email.com ..." name="email" />
+          <input
+            type="text"
+            placeholder="example@email.com ..."
+            name="email"
+            onChange={handleChangeFormular}
+          />
           <label>Password</label>
-          <input type="password" name="password" />
+          <input
+            type="password"
+            name="password"
+            onChange={handleChangeFormular}
+          />
           <label>Confirm Password</label>
-          <input type="password" name="confirm" />
-          <button className="register__button">Create an Account</button>
+          <input
+            type="password"
+            name="confirm"
+            onChange={handleChangeFormular}
+          />
+          <button type="submit" className="register__button">
+            Create an Account
+          </button>
           <div className="register__options">
             <div className="register__checkbox">
               <Checkbox

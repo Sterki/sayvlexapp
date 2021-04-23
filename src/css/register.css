@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap");
 .register {
   height: 90vh;
   display: -webkit-flex;
@@ -6,7 +7,6 @@
   justify-content: center;
   -webkit-align-items: center;
   align-items: center;
-  overflow: hidden;
 }
 
 .register__container {
@@ -17,7 +17,7 @@
   -webkit-justify-content: center;
   justify-content: center;
   border: 1px solid #5c5c8a;
-  box-shadow: 1px 1px 5px 1px #5c5c8a;
+  box-shadow: 1px 1px 25px 10px #5c5c8a;
   background-color: #666699;
   padding: 3rem 1rem 3rem 1rem;
 }
@@ -37,8 +37,11 @@
   text-transform: uppercase;
 }
 
-.register__container .register__formular label {
+.register__container .register__formular .MuiSvgIcon-root {
   margin-top: 1rem;
+  color: #e0e0eb;
+  width: 1.8rem;
+  height: 1.8rem;
 }
 
 .register__container .register__formular input {
@@ -47,6 +50,10 @@
   border-radius: 4px;
   border: none;
   outline: none;
+  font-size: 1rem;
+  background-color: #e0e0eb;
+  color: gray;
+  font-weight: 600;
 }
 
 .register__container .register__formular input:last-of-type {

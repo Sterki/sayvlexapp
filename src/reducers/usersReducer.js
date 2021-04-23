@@ -1,4 +1,5 @@
 import {
+  CREATE_NEW_USER,
   ROOM_SELECTED,
   ROOM_TO_CONNECT,
   SET_MESSAGE,
@@ -12,6 +13,7 @@ const inisialState = {
   roomsRedux: null,
   messages: [],
   message: "",
+  token: null,
 };
 
 function userReducer(state = inisialState, action) {
@@ -39,6 +41,12 @@ function userReducer(state = inisialState, action) {
       return {
         ...state,
         messages: [],
+      };
+    case CREATE_NEW_USER:
+      localStorage.setItem("token", action.payload.token);
+      return {
+        ...state,
+        token: action.payload.token,
       };
   }
 }

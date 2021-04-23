@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import "./../../scss/register.scss";
 import { motion } from "framer-motion";
 import { useHistory } from "react-router-dom";
+import EmailIcon from "@material-ui/icons/Email";
+import VpnKeyIcon from "@material-ui/icons/VpnKey";
 
 const containerVarianst = {
   hidden: {
@@ -33,9 +35,9 @@ export default function Login() {
       <div className="register__container">
         <form className="register__formular">
           <h1>Login</h1>
-          <label>Email</label>
+          <EmailIcon />
           <input type="text" placeholder="example@email.com ..." name="email" />
-          <label>Password</label>
+          <VpnKeyIcon />
           <input type="password" name="password" />
           <button
             type="submit"
