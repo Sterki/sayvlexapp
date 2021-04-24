@@ -1,5 +1,7 @@
 import {
+  CLOSE_SESION,
   CREATE_NEW_USER,
+  GET_USER_LOGED,
   ROOM_SELECTED,
   ROOM_TO_CONNECT,
   SET_MESSAGE,
@@ -47,6 +49,18 @@ function userReducer(state = inisialState, action) {
       return {
         ...state,
         token: action.payload.token,
+      };
+    case GET_USER_LOGED:
+      return {
+        ...state,
+        user: action.payload,
+      };
+    case CLOSE_SESION:
+      localStorage.removeItem("token");
+      return {
+        ...state,
+        token: null,
+        user: null,
       };
   }
 }

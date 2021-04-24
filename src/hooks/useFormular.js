@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { createNewUserAction } from "../actions/usersAction";
+import { useHistory } from "react-router-dom";
 
 export function useFormular(inisialState) {
   // here the fancy code to set de users!
   const [user, setUser] = useState(inisialState);
   const [checked, setChecked] = useState(false);
+  const history = useHistory();
   const dispatch = useDispatch();
   function handleChangeFormular(e) {
     setUser({ ...user, [e.target.name]: e.target.value });
@@ -27,6 +29,7 @@ export function useFormular(inisialState) {
         if (resp) {
           resp.json().then((respJson) => {
             dispatch(createNewUserAction(respJson));
+            history.push("/panel");
           });
         }
       })

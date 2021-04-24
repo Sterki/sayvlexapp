@@ -7,7 +7,29 @@ import store from "./store";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
+import { useDispatch, useSelector } from "react-redux";
+import { getUserLogedAction } from "./actions/usersAction";
+import { useEffect } from "react";
+import tokenAuth from "./config/tokenAuth";
+
+function wrappApp() {
+  return (
+    <Provider store={store}>
+      <App />
+    </Provider>
+  );
+}
 function App() {
+  const token = localStorage.getItem("token");
+  if (token) {
+    tokenAuth(token);
+  }
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getUserLogedAction());
+  }, [dispatch]);
+
   return (
     <Provider store={store}>
       <Router>
@@ -38,4 +60,4 @@ function App() {
   );
 }
 
-export default App;
+export default wrappApp;
