@@ -20,12 +20,12 @@ function wrappApp() {
   );
 }
 function App() {
+  const dispatch = useDispatch();
   const token = localStorage.getItem("token");
+
   if (token) {
     tokenAuth(token);
   }
-  const dispatch = useDispatch();
-
   useEffect(() => {
     dispatch(getUserLogedAction());
   }, [dispatch]);

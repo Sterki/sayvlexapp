@@ -1,9 +1,10 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useHistory } from "react-router-dom";
 import "./../../scss/login.scss";
 import Checkbox from "@material-ui/core/Checkbox";
 import { motion } from "framer-motion";
 import { useFormular } from "./../../hooks/useFormular";
+import { useSelector } from "react-redux";
 
 const containerVarianst = {
   hidden: {
@@ -16,7 +17,6 @@ const containerVarianst = {
     transition: { delay: 0.2, ease: "easeOut" },
   },
 };
-
 const INISIAL_STATE = {
   name: "",
   username: "",
@@ -24,8 +24,8 @@ const INISIAL_STATE = {
   password: "",
   confirm: "",
 };
-
 export default function Register() {
+  const history = useHistory();
   const {
     checked,
     handleChangeFormular,
@@ -33,6 +33,13 @@ export default function Register() {
     handleChange,
   } = useFormular(INISIAL_STATE);
 
+  const auth = useSelector((state) => state.user.autenticate);
+
+  useEffect(() => {
+    if (auth) {
+      history.push("/panel");
+    }
+  }, [auth, history]);
   return (
     <motion.div
       className="register"

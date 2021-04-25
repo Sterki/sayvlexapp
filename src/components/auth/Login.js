@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./../../scss/register.scss";
 import { motion } from "framer-motion";
 import { useHistory } from "react-router-dom";
 import EmailIcon from "@material-ui/icons/Email";
 import VpnKeyIcon from "@material-ui/icons/VpnKey";
+import { useFormular } from "./../../hooks/useFormular";
+import { useSelector } from "react-redux";
 
 const containerVarianst = {
   hidden: {
@@ -17,13 +19,20 @@ const containerVarianst = {
     transition: { delay: 0.2, ease: "easeOut" },
   },
 };
-
+const STATE_INICIAL = {
+  email: "",
+  password: "",
+};
 export default function Login() {
   const history = useHistory();
-  const handleClickLogin = (e) => {
-    e.preventDefault();
-    history.push("/panel");
-  };
+  const { handleChangeSignin, sigInUser } = useFormular(STATE_INICIAL);
+  const auth = useSelector((state) => state.user.autenticate);
+
+  useEffect(() => {
+    if (auth) {
+      history.push("/panel");
+    }
+  }, [auth, history]);
 
   return (
     <motion.div
@@ -33,7 +42,7 @@ export default function Login() {
       animate="show"
     >
       <div className="register__container">
-        <form className="register__formular">
+        <form className="register__formular" onSubmit={sigInUser}>
           <h1>Login</h1>
           <div className="register__inputs">
             <EmailIcon />
@@ -41,18 +50,19 @@ export default function Login() {
               type="text"
               placeholder="example@email.com ..."
               name="email"
+              onChange={handleChangeSignin}
             />
           </div>
           <div className="register__inputs">
             <VpnKeyIcon />
-            <input type="password" name="password" />
+            <input
+              type="password"
+              name="password"
+              onChange={handleChangeSignin}
+            />
           </div>
 
-          <button
-            type="submit"
-            onClick={handleClickLogin}
-            className="register__button"
-          >
+          <button type="submit" className="register__button">
             Sign In
           </button>
           <div className="register__options">

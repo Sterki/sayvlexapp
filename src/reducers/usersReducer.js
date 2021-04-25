@@ -1,6 +1,7 @@
 import {
   CLOSE_SESION,
   CREATE_NEW_USER,
+  GET_SIGN_IN_USER,
   GET_USER_LOGED,
   ROOM_SELECTED,
   ROOM_TO_CONNECT,
@@ -10,7 +11,8 @@ import {
 } from "../types";
 
 const inisialState = {
-  user: null,
+  userAuth: null,
+  autenticate: null,
   roomSelected: null,
   roomsRedux: null,
   messages: [],
@@ -20,8 +22,25 @@ const inisialState = {
 
 function userReducer(state = inisialState, action) {
   switch (action.type) {
-    default:
-      return state;
+    case CREATE_NEW_USER:
+      localStorage.setItem("token", action.payload.token);
+      return {
+        ...state,
+        token: action.payload.token,
+        autenticate: true,
+      };
+    case GET_SIGN_IN_USER:
+      localStorage.setItem("token", action.payload.token);
+      return {
+        ...state,
+        token: action.payload.token,
+      };
+    case GET_USER_LOGED:
+      return {
+        ...state,
+        userAuth: action.payload,
+        autenticate: true,
+      };
     case ROOM_SELECTED:
       return {
         ...state,
@@ -44,24 +63,16 @@ function userReducer(state = inisialState, action) {
         ...state,
         messages: [],
       };
-    case CREATE_NEW_USER:
-      localStorage.setItem("token", action.payload.token);
-      return {
-        ...state,
-        token: action.payload.token,
-      };
-    case GET_USER_LOGED:
-      return {
-        ...state,
-        user: action.payload,
-      };
     case CLOSE_SESION:
       localStorage.removeItem("token");
       return {
         ...state,
         token: null,
-        user: null,
+        userAuth: null,
+        autenticate: false,
       };
+    default:
+      return state;
   }
 }
 export default userReducer;

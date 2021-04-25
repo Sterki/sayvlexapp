@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { createNewUserAction } from "../actions/usersAction";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { createNewUserAction, signInAction } from "../actions/usersAction";
 import { useHistory } from "react-router-dom";
 
 export function useFormular(inisialState) {
@@ -9,6 +9,7 @@ export function useFormular(inisialState) {
   const [checked, setChecked] = useState(false);
   const history = useHistory();
   const dispatch = useDispatch();
+
   function handleChangeFormular(e) {
     setUser({ ...user, [e.target.name]: e.target.value });
   }
@@ -35,5 +36,20 @@ export function useFormular(inisialState) {
       })
       .catch((error) => console.log(error));
   }
-  return { checked, handleChangeFormular, handleSubmitUserForm, handleChange };
+  function handleChangeSignin(e) {
+    setUser({ ...user, [e.target.name]: e.target.value });
+  }
+  function sigInUser(e) {
+    e.preventDefault();
+    dispatch(signInAction(user));
+    history.push("/panel");
+  }
+  return {
+    checked,
+    handleChangeFormular,
+    handleSubmitUserForm,
+    handleChange,
+    handleChangeSignin,
+    sigInUser,
+  };
 }

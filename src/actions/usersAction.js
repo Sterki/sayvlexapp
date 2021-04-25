@@ -8,6 +8,7 @@ import {
   SET_MESSAGE_ARRAY,
   GET_USER_LOGED,
   CLOSE_SESION,
+  GET_SIGN_IN_USER,
 } from "../types";
 import tokenAuth from "./../config/tokenAuth";
 
@@ -68,6 +69,31 @@ const createNewUser = (token) => ({
   payload: token,
 });
 
+export function signInAction(user) {
+  return (dispatch) => {
+    try {
+      fetch(`${process.env.REACT_APP_SERVER_URL}/api/auth`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(user),
+      }).then((resp) => {
+        if (resp.ok) {
+          resp.json().then((respJson) => {
+            // console.log(respJson);
+            dispatch(getSignInUser(respJson));
+            dispatch(getUserLogedAction());
+          });
+        }
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+const getSignInUser = (token) => ({
+  type: GET_SIGN_IN_USER,
+  payload: token,
+});
 export function getUserLogedAction() {
   const token = localStorage.getItem("token");
   if (token) {
@@ -75,8 +101,12 @@ export function getUserLogedAction() {
     tokenAuth(token);
   }
   return async (dispatch) => {
-    const result = await clienteAxios.get("api/users");
-    dispatch(getUserLoged(result.data.user));
+    try {
+      const result = await clienteAxios.get("api/users");
+      dispatch(getUserLoged(result.data.user));
+    } catch (error) {
+      console.log(error);
+    }
   };
 }
 const getUserLoged = (user) => ({

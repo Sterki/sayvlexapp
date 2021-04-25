@@ -7,20 +7,21 @@ import Friends from "./Friends";
 import Modal from "./Modal";
 import { LightTooltip } from "./ui/tooltip";
 import { useSelector, useDispatch } from "react-redux";
-import { closeSesionAction } from "../actions/usersAction";
+import { closeSesionAction, getUserLogedAction } from "../actions/usersAction";
 import { useHistory } from "react-router-dom";
 
 export default function Sidebar() {
   const dispatch = useDispatch();
   const history = useHistory();
   const [open, setOpen] = useState(false);
-  const userAuth = useSelector((state) => state.user.user);
+  const userAuth = useSelector((state) => state.user.userAuth);
+  const auth = useSelector((state) => state.user.autenticate);
 
   useEffect(() => {
-    if (!userAuth) {
+    if (!auth) {
       history.push("/");
     }
-  }, [userAuth, history]);
+  }, [auth, history]);
 
   function handleClickCloseSesion() {
     dispatch(closeSesionAction());
