@@ -1,6 +1,7 @@
 import {
   CLOSE_SESION,
   CREATE_NEW_USER,
+  GET_FRIENDS_LIST,
   GET_SIGN_IN_USER,
   GET_USER_LOGED,
   ROOM_SELECTED,
@@ -18,6 +19,7 @@ const inisialState = {
   messages: [],
   message: "",
   token: null,
+  friends: [],
 };
 
 function userReducer(state = inisialState, action) {
@@ -70,6 +72,11 @@ function userReducer(state = inisialState, action) {
         token: null,
         userAuth: null,
         autenticate: false,
+      };
+    case GET_FRIENDS_LIST:
+      return {
+        ...state,
+        friends: action.payload,
       };
     default:
       return state;

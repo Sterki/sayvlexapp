@@ -27,6 +27,7 @@ export function useChat() {
     // CONEXION DEL SOCKET IO HACIA LOCALHOST PASANDOLE COMO PARAMETRO QUERY EL ROOM ACTUAL
     socketRef.current = socketIoClient(SOCKET_NODEURL, {
       query: { rooms: rooms },
+      reconnection: false,
     });
     // recibimos los mensajes desde el server con socketio
     if (rooms !== null) {
@@ -41,6 +42,7 @@ export function useChat() {
       socketRef.current.disconnect();
     };
   }, [messages, dispatch, rooms]);
+
   useEffect(() => {
     let div = document.querySelector("#myChat");
     if (div) {
@@ -88,25 +90,24 @@ export function useChat() {
     socketRef.current.disconnect();
   }
   // FUNCION PARA SETEAR EL ROOM ACTUAL Y PODER OBTENER LA DATA DEL ROOM SELECCIONADO
-  function handleClickRoom(e) {
+  function handleClickRoom(roomid) {
     console.log("hola desde el click1");
-    e.preventDefault();
-    const ROOM = "room1";
+    // const ROOM = "room1";
 
-    dispatch(setMessageArrayAction());
+    // dispatch(setMessageArrayAction());
 
-    dispatch(roomToConnectAction(ROOM));
-    fetch(`${SOCKET_NODEURL}/api/message/${ROOM}`)
-      .then((resp) => {
-        resp.json().then((res) => {
-          const { message, roomname } = res;
+    // dispatch(roomToConnectAction(ROOM));
+    // fetch(`${SOCKET_NODEURL}/api/message/${ROOM}`)
+    //   .then((resp) => {
+    //     resp.json().then((res) => {
+    //       const { message, roomname } = res;
 
-          dispatch(roomSelectedAction(roomname));
-          dispatch(roomToConnectAction(ROOM));
-          dispatch(setMessagesAction(message));
-        });
-      })
-      .catch((error) => console.log("error eb la url", error));
+    //       dispatch(roomSelectedAction(roomname));
+    //       dispatch(roomToConnectAction(ROOM));
+    //       dispatch(setMessagesAction(message));
+    //     });
+    //   })
+    //   .catch((error) => console.log("error eb la url", error));
   }
 
   return {

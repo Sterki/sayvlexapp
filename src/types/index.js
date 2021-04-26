@@ -11,3 +11,6 @@ export const GET_USER_LOGED = "GET_USER_LOGED";
 export const CLOSE_SESION = "CLOSE_SESION";
 
 export const GET_SIGN_IN_USER = "GET_SIGN_IN_USER";
+
+export const ADD_FRIEND = "ADD_FRIEND";
+export const GET_FRIENDS_LIST = "GET_FRIEND_LIST";

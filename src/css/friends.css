@@ -7,10 +7,6 @@
   transition: all 0.1s;
 }
 
-.friends:hover {
-  background-color: #7575a3;
-}
-
 .friends__container {
   display: -webkit-flex;
   display: flex;
@@ -21,14 +17,7 @@
 }
 
 .friends__container .friends__info {
-  display: -webkit-flex;
-  display: flex;
-  -webkit-align-items: center;
-  align-items: center;
-}
-
-.friends__container .friends__info p {
-  margin-left: 1rem;
+  width: 100%;
 }
 
 .friends__container .friends__date {

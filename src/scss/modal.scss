@@ -9,8 +9,7 @@
   z-index: 2;
   padding: 2rem;
   border-radius: 5px;
-  border: 1px solid $backgroundPrincipal;
-  box-shadow: 1px 1px 4px 1px $backgroundPrincipal;
+  box-shadow: 0px 3px 10px 1px $buttonBackground;
   .MuiSvgIcon-root {
     position: absolute;
     top: 0%;
@@ -40,10 +39,10 @@
         transition: all 0.2s;
 
         &:hover {
-          border: 1px solid $backgroundHover;
+          border: 1px solid $backgroundThird;
         }
         &:focus {
-          border: 1px solid $backgroundHover;
+          border: 1px solid $backgroundThird;
         }
       }
       button {
@@ -61,5 +60,37 @@
         }
       }
     }
+  }
+  .modal__results {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .modal__avatar {
+      display: flex;
+      align-items: center;
+      span {
+        margin-left: 0.5rem;
+      }
+    }
+    .modal__add {
+      button {
+        color: $colorText;
+        background-color: $buttonBackground;
+        padding: 0.4rem;
+        border: none;
+        border-radius: 3px;
+        text-transform: uppercase;
+        cursor: pointer;
+      }
+    }
+  }
+  .modal__error {
+    width: 100%;
+    padding: 0.6rem;
+    background-color: #cc0000;
+    text-align: center;
+    color: $colorText;
+    text-transform: uppercase;
   }
 }

@@ -1,0 +1,19 @@
+@import "./variables";
+
+.friendlist {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem;
+
+  &:hover {
+    background-color: $backgroundThird;
+  }
+  .friendlist__container {
+    display: flex;
+    align-items: center;
+  }
+  span {
+    margin-left: 0.5rem;
+  }
+}
