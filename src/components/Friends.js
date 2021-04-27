@@ -40,7 +40,7 @@ export default function Friends() {
         <div className="friends__info">
           {friends?.map((friend) => (
             <FriendsList
-              key={friend.id}
+              key={friend._id}
               friend={friend}
               handleClickRoom={handleClickRoom}
             />

@@ -41,15 +41,9 @@ export default function Chat() {
               </div>
             </>
           ) : (
-            <div className="chat__content">
-              {roomRedux ? (
-                <>
-                  <h1>Wellcome to the Room : {roomRedux}</h1>
-                </>
-              ) : (
-                <h1>Select a room to start a conversation!</h1>
-              )}
-            </div>
+            <>
+              <div className="chat__content" id="myChat"></div>
+            </>
           )}
           {roomRedux ? (
             <div className="chat__input">

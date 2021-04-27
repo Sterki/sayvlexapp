@@ -8,6 +8,7 @@ import {
   setMessageArrayAction,
   setMessagesAction,
 } from "../actions/usersAction";
+import { chatingwithAction } from "../actions/friendsAction";
 
 export function useChat() {
   const [message, setMessage] = useState("");
@@ -17,6 +18,7 @@ export function useChat() {
   const rooms = useSelector((state) => state.user.roomsRedux);
   const roomSelected = useSelector((state) => state.user.roomSelected);
   const messages = useSelector((state) => state.user.messages);
+  const authUsers = useSelector((state) => state.user.userAuth);
   const socketRef = useRef();
 
   const SOCKET_NODEURL = "http://localhost:4000";
@@ -27,9 +29,11 @@ export function useChat() {
     // CONEXION DEL SOCKET IO HACIA LOCALHOST PASANDOLE COMO PARAMETRO QUERY EL ROOM ACTUAL
     socketRef.current = socketIoClient(SOCKET_NODEURL, {
       query: { rooms: rooms },
-      reconnection: false,
     });
     // recibimos los mensajes desde el server con socketio
+    // socketRef.current.on(ADDFRIENDSSOCKET, (infoUser) => {
+    //   console.log(infoUser);
+    // });
     if (rooms !== null) {
       socketRef.current.on(RECIVO_MENSAJE, (data) => {
         const { info, room } = data;
@@ -37,7 +41,6 @@ export function useChat() {
         dispatch(setMessagesAction(info));
       });
     }
-
     return () => {
       socketRef.current.disconnect();
     };
@@ -66,6 +69,9 @@ export function useChat() {
       body: JSON.stringify({
         roomname: rooms,
         message: message,
+        id: authUsers._id,
+        username: authUsers.username,
+        email: authUsers.email,
         idsender: socketRef.current.id,
       }),
     });
@@ -90,24 +96,23 @@ export function useChat() {
     socketRef.current.disconnect();
   }
   // FUNCION PARA SETEAR EL ROOM ACTUAL Y PODER OBTENER LA DATA DEL ROOM SELECCIONADO
-  function handleClickRoom(roomid) {
-    console.log("hola desde el click1");
+  function handleClickRoom(friend) {
+    const { idRoom } = friend;
+
     // const ROOM = "room1";
-
-    // dispatch(setMessageArrayAction());
-
-    // dispatch(roomToConnectAction(ROOM));
-    // fetch(`${SOCKET_NODEURL}/api/message/${ROOM}`)
-    //   .then((resp) => {
-    //     resp.json().then((res) => {
-    //       const { message, roomname } = res;
-
-    //       dispatch(roomSelectedAction(roomname));
-    //       dispatch(roomToConnectAction(ROOM));
-    //       dispatch(setMessagesAction(message));
-    //     });
-    //   })
-    //   .catch((error) => console.log("error eb la url", error));
+    dispatch(setMessageArrayAction());
+    dispatch(chatingwithAction(friend));
+    dispatch(roomToConnectAction(idRoom));
+    fetch(`${SOCKET_NODEURL}/api/message/${idRoom}`)
+      .then((resp) => {
+        resp.json().then((res) => {
+          const { message, roomname } = res;
+          dispatch(roomSelectedAction(roomname));
+          dispatch(roomToConnectAction(idRoom));
+          dispatch(setMessagesAction(message));
+        });
+      })
+      .catch((error) => console.log("error eb la url", error));
   }
 
   return {
@@ -117,6 +122,7 @@ export function useChat() {
     messages,
     roomSelected,
     setMessage,
+    socketRef,
     handleSubmitMessage,
     closeSesion,
     handleScroll,

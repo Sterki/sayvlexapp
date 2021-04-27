@@ -1,14 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 import "./../scss/chat.scss";
 import Avatar from "@material-ui/core/Avatar";
 import NavigationIcon from "@material-ui/icons/Navigation";
+import { useSelector } from "react-redux";
 
 export default function Message({ message }) {
+  const userAuth = useSelector((state) => state.user.userAuth);
+
   return (
-    <div className="chat__message">
+    <div
+      className={
+        userAuth?.username.includes(message?.username)
+          ? "chat__message"
+          : "chat__messagerecibe"
+      }
+    >
       <div className="chat__avatar">
-        <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
-        <div className="chat__mensaje">
+        <Avatar alt={message.username} src="/static/images/avatar/1.jpg" />
+        <div
+          className={
+            userAuth?.username.includes(message?.username)
+              ? "stylesloged"
+              : "stylesrecibe"
+          }
+        >
           <p>{message.message}</p>
         </div>
       </div>

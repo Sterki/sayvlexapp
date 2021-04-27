@@ -1,4 +1,6 @@
 import {
+  ADD_FRIEND,
+  CHATING_WITH,
   CLOSE_SESION,
   CREATE_NEW_USER,
   GET_FRIENDS_LIST,
@@ -20,6 +22,7 @@ const inisialState = {
   message: "",
   token: null,
   friends: [],
+  chatingwith: null,
 };
 
 function userReducer(state = inisialState, action) {
@@ -65,6 +68,22 @@ function userReducer(state = inisialState, action) {
         ...state,
         messages: [],
       };
+
+    case GET_FRIENDS_LIST:
+      return {
+        ...state,
+        friends: action.payload,
+      };
+    case ADD_FRIEND:
+      return {
+        ...state,
+        friends: [...state.friends, action.payload],
+      };
+    case CHATING_WITH:
+      return {
+        ...state,
+        chatingwith: action.payload,
+      };
     case CLOSE_SESION:
       localStorage.removeItem("token");
       return {
@@ -72,11 +91,9 @@ function userReducer(state = inisialState, action) {
         token: null,
         userAuth: null,
         autenticate: false,
-      };
-    case GET_FRIENDS_LIST:
-      return {
-        ...state,
-        friends: action.payload,
+        roomSelected: null,
+        roomsRedux: null,
+        messages: [],
       };
     default:
       return state;

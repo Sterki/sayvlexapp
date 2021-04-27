@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addFriendAction } from "../actions/friendsAction";
+import socketIoClient from "socket.io-client";
 
 export function useModal(inisialState) {
   const [friend, setFriend] = useState(inisialState);
