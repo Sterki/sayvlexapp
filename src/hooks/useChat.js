@@ -56,6 +56,9 @@ export function useChat() {
   function handleSubmitMessage(e) {
     e.preventDefault();
     // SOCKET IO EMIT DEL MENSAJE
+    if (message.trim() === "") {
+      return;
+    }
     socketRef.current.emit(ROOM_TO_CONNECT, {
       mensaje: message,
       userId: socketRef.current.id,

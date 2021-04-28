@@ -106,9 +106,15 @@
 
 .modal .modal__error {
   width: 100%;
-  padding: 0.6rem;
-  background-color: #cc0000;
-  text-align: center;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  background-color: #812b2b;
   color: #e0e0eb;
-  text-transform: uppercase;
+  padding: 0.5rem;
+  border-radius: 5px;
+  box-shadow: 1px 1px 5px 1px #3a3a3a;
 }

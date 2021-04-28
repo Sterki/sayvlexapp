@@ -87,10 +87,13 @@
   }
   .modal__error {
     width: 100%;
-    padding: 0.6rem;
-    background-color: #cc0000;
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(129, 43, 43);
     color: $colorText;
-    text-transform: uppercase;
+    padding: 0.5rem;
+    border-radius: 5px;
+    box-shadow: 1px 1px 5px 1px rgb(58, 58, 58);
   }
 }

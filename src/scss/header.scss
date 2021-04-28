@@ -7,7 +7,11 @@
     padding: 0.7rem;
     justify-content: space-between;
     align-items: center;
-
+    .header__options {
+      .MuiSvgIcon-root {
+        cursor: pointer;
+      }
+    }
     .header__icon {
       display: flex;
       align-items: center;

@@ -20,6 +20,24 @@
     width: 95%;
     display: flex;
     flex-direction: column;
+
+    .login__error {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: rgb(129, 43, 43);
+      color: $colorText;
+      border-radius: 5px;
+      box-shadow: 1px 1px 10px 1px rgb(58, 58, 58);
+
+      p {
+        margin-right: 0.5rem;
+        .MuiSvgIcon-root {
+          width: 2.3rem;
+          height: 2.3rem;
+        }
+      }
+    }
     h1 {
       text-align: center;
       margin-bottom: 1rem;

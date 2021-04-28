@@ -34,6 +34,52 @@
   color: white;
 }
 
+.chat__container .chat__formular .chat__messagerecibe {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: flex-end;
+  justify-content: flex-end;
+  -webkit-align-items: center;
+  align-items: center;
+  padding: 0.5rem 0.5rem 0.5rem 0rem;
+}
+
+.chat__container .chat__formular .chat__messagerecibe .chat__avatar {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-flex-direction: row-reverse;
+  flex-direction: row-reverse;
+  margin-right: 2rem;
+}
+
+.chat__container .chat__formular .chat__messagerecibe .chat__avatar .stylesloged {
+  word-wrap: break-word;
+  max-width: 500px;
+  width: 95%;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 25px;
+  margin-left: 1rem;
+}
+
+.chat__container .chat__formular .chat__messagerecibe .chat__avatar .stylesloged p {
+  padding: 0.7rem;
+}
+
+.chat__container .chat__formular .chat__messagerecibe .chat__avatar .stylesrecibe {
+  word-wrap: break-word;
+  max-width: 500px;
+  width: 95%;
+  background-color: rgba(255, 0, 0, 0.2);
+  border-radius: 25px;
+  margin-right: 1rem;
+}
+
+.chat__container .chat__formular .chat__messagerecibe .chat__avatar .stylesrecibe p {
+  padding: 0.7rem;
+}
+
 .chat__container .chat__formular .chat__message {
   display: -webkit-flex;
   display: flex;
@@ -51,7 +97,7 @@
   align-items: center;
 }
 
-.chat__container .chat__formular .chat__message .chat__avatar .chat__mensaje {
+.chat__container .chat__formular .chat__message .chat__avatar .stylesloged {
   word-wrap: break-word;
   max-width: 400px;
   width: 95%;
@@ -60,7 +106,20 @@
   margin-left: 1rem;
 }
 
-.chat__container .chat__formular .chat__message .chat__avatar .chat__mensaje p {
+.chat__container .chat__formular .chat__message .chat__avatar .stylesloged p {
+  padding: 0.7rem;
+}
+
+.chat__container .chat__formular .chat__message .chat__avatar .stylesrecibe {
+  word-wrap: break-word;
+  max-width: 400px;
+  width: 95%;
+  background-color: rgba(255, 0, 0, 0.2);
+  border-radius: 25px;
+  margin-left: 1rem;
+}
+
+.chat__container .chat__formular .chat__message .chat__avatar .stylesrecibe p {
   padding: 0.7rem;
 }
 

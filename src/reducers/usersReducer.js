@@ -6,6 +6,7 @@ import {
   GET_FRIENDS_LIST,
   GET_SIGN_IN_USER,
   GET_USER_LOGED,
+  LOGIN_ERROR,
   ROOM_SELECTED,
   ROOM_TO_CONNECT,
   SET_MESSAGE,
@@ -23,6 +24,7 @@ const inisialState = {
   token: null,
   friends: [],
   chatingwith: null,
+  errorlogin: null,
 };
 
 function userReducer(state = inisialState, action) {
@@ -94,6 +96,11 @@ function userReducer(state = inisialState, action) {
         roomSelected: null,
         roomsRedux: null,
         messages: [],
+      };
+    case LOGIN_ERROR:
+      return {
+        ...state,
+        errorlogin: action.payload,
       };
     default:
       return state;

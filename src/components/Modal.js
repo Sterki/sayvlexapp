@@ -70,7 +70,7 @@ export default function Modal({ open, setOpen }) {
           ) : null}
           {error ? (
             <div className="modal__error">
-              <span>{error.msg}</span>
+              <span>{error.msg || error}</span>
             </div>
           ) : null}
         </motion.div>

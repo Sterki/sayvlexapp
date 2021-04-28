@@ -59,8 +59,12 @@ export default function Sidebar() {
           <div className="sidebar__header">
             <p>Wellcome: {userAuth?.username.toUpperCase()}</p>
             <div className="sidebar__icons">
-              <NotificationsIcon />
-              <MoreVertIcon onClick={handleClickOpenMenu} />
+              <LightTooltip title="Notifications" arrow={true}>
+                <NotificationsIcon />
+              </LightTooltip>
+              <LightTooltip title="Menu Options" arrow={true}>
+                <MoreVertIcon onClick={handleClickOpenMenu} />
+              </LightTooltip>
             </div>
             <div className="sidebar__submenu" id="submenu">
               <p>My Profile</p>

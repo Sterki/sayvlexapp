@@ -7,6 +7,9 @@ export function useFormular(inisialState) {
   // here the fancy code to set de users!
   const [user, setUser] = useState(inisialState);
   const [checked, setChecked] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [error, setError] = useState("");
+
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -19,33 +22,83 @@ export function useFormular(inisialState) {
   };
   function handleSubmitUserForm(e) {
     e.preventDefault();
-    fetch(`${process.env.REACT_APP_SERVER_URL}/api/users`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(user),
-    })
-      .then((resp) => {
-        if (resp) {
-          resp.json().then((respJson) => {
-            dispatch(createNewUserAction(respJson));
-            history.push("/panel");
-          });
-        }
+    if (user.username.trim() === "") {
+      setError("The username is required!");
+      setTimeout(() => {
+        setError("");
+      }, 1700);
+    } else if (user.name.trim() === "") {
+      setError("The name is required!");
+      setTimeout(() => {
+        setError("");
+      }, 1700);
+    } else if (user.password.length < 6) {
+      setError("The password need to be atleast 6 characters!");
+      setTimeout(() => {
+        setError("");
+      }, 1700);
+    } else if (user.password !== user.confirm) {
+      setError("The passwords doesnt match!, try again");
+      setTimeout(() => {
+        setError("");
+      }, 1700);
+    } else {
+      fetch(`${process.env.REACT_APP_SERVER_URL}/api/users`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(user),
       })
-      .catch((error) => console.log(error));
+        .then((resp) => {
+          if (resp.ok) {
+            resp.json().then((respJson) => {
+              setOpen(true);
+              setTimeout(() => {
+                setOpen(false);
+                dispatch(createNewUserAction(respJson));
+                history.push("/panel");
+              }, 1500);
+            });
+          } else {
+            resp.json().then((respJson) => {
+              respJson.errors.forEach((error) => {
+                if (error.param.includes("email")) {
+                  setError(error.msg);
+                  setTimeout(() => {
+                    setError("");
+                  }, 1700);
+                }
+              });
+            });
+          }
+        })
+        .catch((error) => console.log(error));
+    }
   }
   function handleChangeSignin(e) {
     setUser({ ...user, [e.target.name]: e.target.value });
   }
   function sigInUser(e) {
     e.preventDefault();
-    dispatch(signInAction(user));
-    history.push("/panel");
+    if (user.email.trim() === "" || user.password.trim() === "") {
+      setError("All the fields are required");
+      setTimeout(() => {
+        return setError("");
+      }, 1500);
+    } else {
+      setOpen(true);
+      setTimeout(() => {
+        setOpen(false);
+        dispatch(signInAction(user));
+        history.push("/panel");
+      }, 1100);
+    }
   }
   return {
     checked,
+    open,
+    error,
     handleChangeFormular,
     handleSubmitUserForm,
     handleChange,

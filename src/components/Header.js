@@ -3,6 +3,7 @@ import "./../scss/header.scss";
 import Avatar from "@material-ui/core/Avatar";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import { useSelector } from "react-redux";
+import { LightTooltip } from "./ui/tooltip";
 
 export default function Header() {
   const chatingwith = useSelector((state) => state.user.chatingwith);
@@ -25,7 +26,9 @@ export default function Header() {
         )}
 
         <div className="header__options">
-          <MoreVertIcon />
+          <LightTooltip title="Chat Options" arrow={true}>
+            <MoreVertIcon />
+          </LightTooltip>
         </div>
       </div>
     </div>

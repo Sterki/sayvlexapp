@@ -9,6 +9,7 @@ import {
   GET_USER_LOGED,
   CLOSE_SESION,
   GET_SIGN_IN_USER,
+  LOGIN_ERROR,
 } from "../types";
 import tokenAuth from "./../config/tokenAuth";
 
@@ -83,6 +84,14 @@ export function signInAction(user) {
             dispatch(getSignInUser(respJson));
             dispatch(getUserLogedAction());
           });
+        } else {
+          resp.json().then((respJson) => {
+            let errorlogin = respJson.msg;
+            dispatch(loginErrorAction(errorlogin));
+            setTimeout(() => {
+              dispatch(loginErrorAction(null));
+            }, 1700);
+          });
         }
       });
     } catch (error) {
@@ -101,11 +110,13 @@ export function getUserLogedAction() {
     tokenAuth(token);
   }
   return async (dispatch) => {
-    try {
-      const result = await clienteAxios.get("api/users");
-      dispatch(getUserLoged(result.data.user));
-    } catch (error) {
-      console.log(error);
+    if (token) {
+      try {
+        const result = await clienteAxios.get("api/users");
+        dispatch(getUserLoged(result.data.user));
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
 }
@@ -121,4 +132,13 @@ export function closeSesionAction() {
 }
 const closeSesion = () => ({
   type: CLOSE_SESION,
+});
+export function loginErrorAction(error) {
+  return (dispatch) => {
+    dispatch(loginError(error));
+  };
+}
+const loginError = (error) => ({
+  type: LOGIN_ERROR,
+  payload: error,
 });

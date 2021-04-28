@@ -44,6 +44,11 @@ export function useModal(inisialState) {
           console.log(error);
           console.log("Error en la URL");
         });
+    } else {
+      setError("The username is required!");
+      setTimeout(() => {
+        setError("");
+      }, 1800);
     }
   };
   return {
