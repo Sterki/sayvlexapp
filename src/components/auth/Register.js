@@ -108,8 +108,8 @@ export default function Register() {
             <button className="register__button" type="submit">
               Create an Account
             </button>
-            {/* <div className="register__options">
-              <div className="register__checkbox">
+            <div className="register__options">
+              {/* <div className="register__checkbox">
                 <Checkbox
                   onChange={handleChange}
                   checked={checked}
@@ -129,12 +129,12 @@ export default function Register() {
                   inputProps={{ "aria-label": "checkbox with default color" }}
                 />
                 <label>I have read and accept the Privacy Statement.</label>
-              </div>
+              </div> */}
 
               <p>
                 Do you have an Account? <Link to="/">Sign in</Link>
               </p>
-            </div> */}
+            </div>
           </form>
         </div>
       </motion.div>

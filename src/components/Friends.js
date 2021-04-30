@@ -4,6 +4,7 @@ import { useChat } from "../hooks/useChat";
 import { useDispatch, useSelector } from "react-redux";
 import { getFriendListAction } from "../actions/friendsAction";
 import FriendsList from "./FriendsList";
+import clienteAxios from "./../config/axios";
 
 export default function Friends() {
   const dispatch = useDispatch();
