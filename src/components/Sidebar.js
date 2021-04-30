@@ -73,7 +73,7 @@ export default function Sidebar() {
             </div>
           </div>
           <div className="sidebar__title">
-            <h1>Friend List</h1>
+            <h1>Friends</h1>
             <LightTooltip title="Add friends" arrow={true}>
               <AddIcon onClick={() => setOpen(true)} />
             </LightTooltip>
