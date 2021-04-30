@@ -4,7 +4,9 @@ import "./../scss/modal.scss";
 import CloseIcon from "@material-ui/icons/Close";
 import { motion } from "framer-motion";
 import { useModal } from "./../hooks/useModal";
-import { Avatar } from "@material-ui/core";
+import { Avatar, CircularProgress } from "@material-ui/core";
+import { useSelector } from "react-redux";
+import SearchIcon from "@material-ui/icons/Search";
 
 const containerVarianst = {
   hidden: { x: "50vw", opacity: 0 },
@@ -18,13 +20,22 @@ const STATE_INICIAL = {
   username: "",
 };
 export default function Modal({ open, setOpen }) {
+  const errorfriend = useSelector((state) => state.user.errorfriend);
+
   const {
     error,
     search,
+    setSearch,
+    spinner,
     handleChange,
     handleSearchFriend,
     handleClickSubmit,
   } = useModal(STATE_INICIAL);
+
+  const handleCleanSearch = () => {
+    setOpen(false);
+    setSearch(null);
+  };
 
   return (
     <>
@@ -35,7 +46,7 @@ export default function Modal({ open, setOpen }) {
           initial="hidden"
           animate="show"
         >
-          <CloseIcon onClick={() => setOpen(false)} />
+          <CloseIcon onClick={handleCleanSearch} />
           <form className="modal__form" onSubmit={handleSearchFriend}>
             <div className="modal__input">
               <input
@@ -49,6 +60,11 @@ export default function Modal({ open, setOpen }) {
               </button>
             </div>
           </form>
+          {spinner ? (
+            <div className="modal__spinner">
+              <CircularProgress />
+            </div>
+          ) : null}
           {search ? (
             <div className="modal__results">
               <div className="modal__avatar">
@@ -59,12 +75,16 @@ export default function Modal({ open, setOpen }) {
                 <span>{search?.username}</span>
               </div>
               <div className="modal__add">
-                <button
-                  className="modal__button"
-                  onClick={(e) => handleClickSubmit(search)}
-                >
-                  Add as Friend
-                </button>
+                {errorfriend ? (
+                  <button>Delete friend</button>
+                ) : (
+                  <button
+                    className="modal__button"
+                    onClick={(e) => handleClickSubmit(search)}
+                  >
+                    Add as Friend
+                  </button>
+                )}
               </div>
             </div>
           ) : null}

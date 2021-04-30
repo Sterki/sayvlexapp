@@ -19,11 +19,13 @@ export function useChat() {
   const roomSelected = useSelector((state) => state.user.roomSelected);
   const messages = useSelector((state) => state.user.messages);
   const authUsers = useSelector((state) => state.user.userAuth);
+  const [tiempo, setTiempo] = useState();
   const socketRef = useRef();
 
   const SOCKET_NODEURL = "http://localhost:4000";
   const ROOM_TO_CONNECT = "roomTest";
   const RECIVO_MENSAJE = "recivoMensaje";
+  const TIMECONNECTED = "timeconected";
 
   useEffect(() => {
     // CONEXION DEL SOCKET IO HACIA LOCALHOST PASANDOLE COMO PARAMETRO QUERY EL ROOM ACTUAL
@@ -34,9 +36,13 @@ export function useChat() {
     // socketRef.current.on(ADDFRIENDSSOCKET, (infoUser) => {
     //   console.log(infoUser);
     // });
+    socketRef.current.on(TIMECONNECTED, (tiempo) => {
+      setTiempo(tiempo);
+    });
     if (rooms !== null) {
       socketRef.current.on(RECIVO_MENSAJE, (data) => {
         const { info, room } = data;
+
         dispatch(roomSelectedAction(room));
         dispatch(setMessagesAction(info));
       });
@@ -83,7 +89,7 @@ export function useChat() {
   function handleScroll(e) {
     let div = document.querySelector("#myChat");
 
-    const { scrollTop, scrollHeight, clientHeight } = e.target;
+    const { scrollTop } = e.target;
 
     if (scrollTop === 0) {
       setCircle(true);
@@ -121,6 +127,7 @@ export function useChat() {
   return {
     message,
     circle,
+    tiempo,
     visible,
     messages,
     roomSelected,

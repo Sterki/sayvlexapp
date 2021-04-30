@@ -1,4 +1,9 @@
-import { ADD_FRIEND, CHATING_WITH, GET_FRIENDS_LIST } from "../types";
+import {
+  ADD_FRIEND,
+  CHATING_WITH,
+  ERROR_FRIEND_EXIST,
+  GET_FRIENDS_LIST,
+} from "../types";
 import clienteAxios from "./../config/axios";
 
 export function addFriendAction(user) {
@@ -6,14 +11,20 @@ export function addFriendAction(user) {
     try {
       await clienteAxios.post("api/friendlist", user).then((resp) => {
         if (resp.status === 200) {
+          console.log(resp.data);
           dispatch(addFriend(resp.data));
         }
       });
     } catch (error) {
-      console.log(error);
+      console.log(error.response.data);
+      dispatch(errorfriendexist(error.response.data.msg));
     }
   };
 }
+const errorfriendexist = (errorfriend) => ({
+  type: ERROR_FRIEND_EXIST,
+  payload: errorfriend,
+});
 const addFriend = (friend) => ({
   type: ADD_FRIEND,
   payload: friend,
@@ -36,4 +47,14 @@ export function chatingwithAction(friend) {
 const chatingwith = (friend) => ({
   type: CHATING_WITH,
   payload: friend,
+});
+
+export function errorfriendAction(erroramigo) {
+  return (dispatch) => {
+    dispatch(errorfriend(erroramigo));
+  };
+}
+const errorfriend = (erroramigo) => ({
+  type: ERROR_FRIEND_EXIST,
+  payload: erroramigo,
 });

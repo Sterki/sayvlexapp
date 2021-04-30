@@ -2,9 +2,9 @@ import React from "react";
 import "./../scss/chat.scss";
 import { useChat } from "../hooks/useChat";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import { useSelector, useDispatch } from "react-redux";
-import { setMessageAction } from "../actions/usersAction";
+import { useSelector } from "react-redux";
 import Message from "./Message";
+import SendIcon from "@material-ui/icons/Send";
 
 export default function Chat() {
   const roomSelectedRedux = useSelector((state) => state.user.roomSelected);
@@ -55,7 +55,10 @@ export default function Chat() {
                 }}
                 value={message}
               />
-              <button type="submit">Send Message</button>
+
+              <button type="submit">
+                <SendIcon />
+              </button>
             </div>
           ) : null}
         </form>

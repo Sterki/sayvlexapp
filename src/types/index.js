@@ -17,3 +17,5 @@ export const GET_FRIENDS_LIST = "GET_FRIEND_LIST";
 export const CHATING_WITH = "CHATING_WITH";
 
 export const LOGIN_ERROR = "LOGIN_ERROR";
+
+export const ERROR_FRIEND_EXIST = "ERROR_FRIEND_EXIST";

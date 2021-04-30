@@ -1,12 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import "./../scss/chat.scss";
 import Avatar from "@material-ui/core/Avatar";
-import NavigationIcon from "@material-ui/icons/Navigation";
 import { useSelector } from "react-redux";
 
 export default function Message({ message }) {
   const userAuth = useSelector((state) => state.user.userAuth);
-
   return (
     <div
       className={

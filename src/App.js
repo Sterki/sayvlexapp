@@ -7,7 +7,7 @@ import store from "./store";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { getUserLogedAction } from "./actions/usersAction";
 import { useEffect } from "react";
 import tokenAuth from "./config/tokenAuth";

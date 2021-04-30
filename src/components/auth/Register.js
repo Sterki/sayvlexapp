@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import "./../../scss/login.scss";
 import Checkbox from "@material-ui/core/Checkbox";

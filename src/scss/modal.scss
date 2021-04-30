@@ -96,4 +96,12 @@
     border-radius: 5px;
     box-shadow: 1px 1px 5px 1px rgb(58, 58, 58);
   }
+  .modal__spinner {
+    display: flex;
+    justify-content: center;
+
+    .MuiCircularProgress-root {
+      color: $buttonBackground;
+    }
+  }
 }

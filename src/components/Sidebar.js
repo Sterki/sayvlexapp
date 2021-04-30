@@ -7,7 +7,7 @@ import Friends from "./Friends";
 import Modal from "./Modal";
 import { LightTooltip } from "./ui/tooltip";
 import { useSelector, useDispatch } from "react-redux";
-import { closeSesionAction, getUserLogedAction } from "../actions/usersAction";
+import { closeSesionAction } from "../actions/usersAction";
 import PlayArrowIcon from "@material-ui/icons/PlayArrow";
 import { useHistory } from "react-router-dom";
 

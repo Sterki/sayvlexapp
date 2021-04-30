@@ -3,6 +3,7 @@ import {
   CHATING_WITH,
   CLOSE_SESION,
   CREATE_NEW_USER,
+  ERROR_FRIEND_EXIST,
   GET_FRIENDS_LIST,
   GET_SIGN_IN_USER,
   GET_USER_LOGED,
@@ -25,6 +26,7 @@ const inisialState = {
   friends: [],
   chatingwith: null,
   errorlogin: null,
+  errorfriend: null,
 };
 
 function userReducer(state = inisialState, action) {
@@ -86,12 +88,18 @@ function userReducer(state = inisialState, action) {
         ...state,
         chatingwith: action.payload,
       };
+    case ERROR_FRIEND_EXIST:
+      return {
+        ...state,
+        errorfriend: action.payload,
+      };
     case CLOSE_SESION:
       localStorage.removeItem("token");
       return {
         ...state,
         token: null,
         userAuth: null,
+        chatingwith: null,
         autenticate: false,
         roomSelected: null,
         roomsRedux: null,

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import "./../scss/friends.scss";
 import { useChat } from "../hooks/useChat";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,7 +7,7 @@ import FriendsList from "./FriendsList";
 
 export default function Friends() {
   const dispatch = useDispatch();
-  const { handleClickRoom } = useChat();
+  const { handleClickRoom, tiempo } = useChat();
   const friends = useSelector((state) => state.user.friends);
   const userAuth = useSelector((state) => state.user.userAuth);
 
@@ -32,7 +32,7 @@ export default function Friends() {
           console.log("error en la url");
         });
     }
-  }, [dispatch]);
+  }, [dispatch, userAuth]);
 
   return (
     <div className="friends">
@@ -43,6 +43,7 @@ export default function Friends() {
               key={friend._id}
               friend={friend}
               handleClickRoom={handleClickRoom}
+              tiempo={tiempo}
             />
           ))}
         </div>
