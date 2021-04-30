@@ -32,7 +32,7 @@ export default function Chat() {
     // setMessage(emojiObject);
     // setMessage(emojiObject);
     console.log(emojiObject);
-    setMessage(input.value);
+    setMessage((prevState) => prevState + input.value);
     console.log(message);
   };
 
