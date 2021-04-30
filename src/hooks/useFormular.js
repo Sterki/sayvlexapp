@@ -43,7 +43,7 @@ export function useFormular(inisialState) {
         setError("");
       }, 1700);
     } else {
-      fetch(`${process.env.REACT_APP_SERVER_URL}/api/users`, {
+      fetch(`${process.env.REACT_APP_SERVER_HEROKU}/api/users`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -62,18 +62,30 @@ export function useFormular(inisialState) {
             });
           } else {
             resp.json().then((respJson) => {
-              respJson.errors.forEach((error) => {
-                if (error.param.includes("email")) {
-                  setError(error.msg);
-                  setTimeout(() => {
-                    setError("");
-                  }, 1700);
+              if (respJson.msg) {
+                setError(respJson.msg);
+                setTimeout(() => {
+                  setError("");
+                }, 1700);
+              } else {
+                if (respJson.errors.length > 0) {
+                  respJson.errors.forEach((error) => {
+                    if (error.param.includes("email")) {
+                      setError(error.msg);
+                      setTimeout(() => {
+                        setError("");
+                      }, 1700);
+                    }
+                  });
                 }
-              });
+              }
             });
           }
         })
-        .catch((error) => console.log(error));
+        .catch((error) => {
+          console.log(error.response);
+          console.log("error en la url");
+        });
     }
   }
   function handleChangeSignin(e) {
@@ -92,7 +104,7 @@ export function useFormular(inisialState) {
         setOpen(false);
         dispatch(signInAction(user));
         history.push("/panel");
-      }, 1100);
+      }, 1800);
     }
   }
   return {

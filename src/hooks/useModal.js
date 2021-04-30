@@ -23,7 +23,7 @@ export function useModal(inisialState) {
     dispatch(errorfriendAction(null));
     setSearch(null);
     if (friend.username.trim() !== "") {
-      fetch(`${process.env.REACT_APP_SERVER_URL}/api/friends`, {
+      fetch(`${process.env.REACT_APP_SERVER_HEROKU}/api/friends`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(friend),

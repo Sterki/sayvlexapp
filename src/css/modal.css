@@ -118,3 +118,14 @@
   border-radius: 5px;
   box-shadow: 1px 1px 5px 1px #3a3a3a;
 }
+
+.modal .modal__spinner {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: center;
+  justify-content: center;
+}
+
+.modal .modal__spinner .MuiCircularProgress-root {
+  color: #3d3d5c;
+}

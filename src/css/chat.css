@@ -23,6 +23,12 @@
   background-repeat: repeat;
 }
 
+.chat__container .chat__formular .chat__emoji {
+  position: absolute;
+  top: 57%;
+  left: 70%;
+}
+
 .chat__container .chat__formular .chat__circle {
   display: -webkit-flex;
   display: flex;
@@ -158,6 +164,7 @@
   padding: 0.5rem;
   -webkit-flex: 0 1 8%;
   flex: 0 1 8%;
+  height: 5rem;
   display: -webkit-flex;
   display: flex;
   border-top: 1px solid #8585ad;
@@ -165,9 +172,23 @@
   background-repeat: repeat;
 }
 
+.chat__container .chat__formular .chat__input .chat__emojibutton {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-flex: 0 0 5%;
+  flex: 0 0 5%;
+}
+
+.chat__container .chat__formular .chat__input .chat__emojibutton .MuiSvgIcon-root {
+  color: #fcc839;
+  cursor: pointer;
+}
+
 .chat__container .chat__formular .chat__input input {
-  -webkit-flex: 0 1 80%;
-  flex: 0 1 80%;
+  -webkit-flex: 0 1 90%;
+  flex: 0 1 90%;
   border: 1px solid lightgrey;
   margin-right: 1rem;
   border-radius: 20px;
@@ -176,21 +197,24 @@
 }
 
 .chat__container .chat__formular .chat__input button {
-  -webkit-flex: 0 1 20%;
-  flex: 0 1 20%;
+  -webkit-flex: 0 0 5%;
+  flex: 0 0 5%;
   color: #e0e0eb;
-  background-color: #3d3d5c;
-  padding: 1rem;
-  letter-spacing: 0.2em;
+  background-color: transparent;
+  padding: 0rem;
   border: none;
-  border-radius: 3px;
-  text-transform: uppercase;
   cursor: pointer;
   transition: all 0.2s;
   outline: none;
 }
 
+.chat__container .chat__formular .chat__input button .MuiSvgIcon-root {
+  width: 1.5rem;
+  height: 1.5rem;
+  padding: 0rem;
+}
+
 .chat__container .chat__formular .chat__input button:hover {
-  background-color: #47476b;
   color: white;
+  border-radius: 50%;
 }

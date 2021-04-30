@@ -73,7 +73,7 @@ const createNewUser = (token) => ({
 export function signInAction(user) {
   return (dispatch) => {
     try {
-      fetch(`${process.env.REACT_APP_SERVER_URL}/api/auth`, {
+      fetch(`${process.env.REACT_APP_SERVER_HEROKU}/api/auth`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(user),

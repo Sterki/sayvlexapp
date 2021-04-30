@@ -105,10 +105,10 @@ export default function Register() {
               name="confirm"
               onChange={handleChangeFormular}
             />
-            <button type="submit" className="register__button">
+            <button className="register__button" type="submit">
               Create an Account
             </button>
-            <div className="register__options">
+            {/* <div className="register__options">
               <div className="register__checkbox">
                 <Checkbox
                   onChange={handleChange}
@@ -134,7 +134,7 @@ export default function Register() {
               <p>
                 Do you have an Account? <Link to="/">Sign in</Link>
               </p>
-            </div>
+            </div> */}
           </form>
         </div>
       </motion.div>

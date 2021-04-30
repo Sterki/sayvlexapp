@@ -29,7 +29,7 @@ export function useChat() {
 
   useEffect(() => {
     // CONEXION DEL SOCKET IO HACIA LOCALHOST PASANDOLE COMO PARAMETRO QUERY EL ROOM ACTUAL
-    socketRef.current = socketIoClient(SOCKET_NODEURL, {
+    socketRef.current = socketIoClient(process.env.REACT_APP_SERVER_HEROKU, {
       query: { rooms: rooms },
     });
     // recibimos los mensajes desde el server con socketio
@@ -70,7 +70,7 @@ export function useChat() {
       userId: socketRef.current.id,
     });
     // FETCH HACIA LA API PARA GUARDAR LOS MENSAJES EN LA BASE DE DATOS
-    fetch(`${SOCKET_NODEURL}/api/message`, {
+    fetch(`${process.env.REACT_APP_SERVER_HEROKU}/api/message`, {
       method: "POST",
       headers: {
         "Content-Type": "Application/json",
@@ -112,7 +112,7 @@ export function useChat() {
     dispatch(setMessageArrayAction());
     dispatch(chatingwithAction(friend));
     dispatch(roomToConnectAction(idRoom));
-    fetch(`${SOCKET_NODEURL}/api/message/${idRoom}`)
+    fetch(`${process.env.REACT_APP_SERVER_HEROKU}/api/message/${idRoom}`)
       .then((resp) => {
         resp.json().then((res) => {
           const { message, roomname } = res;
