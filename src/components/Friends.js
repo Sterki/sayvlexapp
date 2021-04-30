@@ -13,25 +13,44 @@ export default function Friends() {
   const userAuth = useSelector((state) => state.user.userAuth);
 
   useEffect(() => {
+    let isMounted = true;
     if (userAuth) {
-      fetch(
-        `${process.env.REACT_APP_SERVER_URL}/api/friendlist/${userAuth?._id}`
-      )
-        .then((resp) => {
-          if (resp.ok) {
-            resp.json().then((respJson) => {
-              dispatch(getFriendListAction(respJson));
-            });
-          } else {
-            resp.json().then((respFalse) => {
-              console.log(respFalse);
-            });
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-          console.log("error en la url");
-        });
+      const getfriendlist = async () => {
+        await clienteAxios
+          .get(`/api/friendlist/${userAuth?._id}`)
+          .then((resp) => {
+            if (resp.status === 200) {
+              if (isMounted) {
+                dispatch(getFriendListAction(resp.data));
+              }
+            }
+          })
+          .catch((error) => {
+            console.log("error en la url", error);
+          });
+      };
+      getfriendlist();
+      return () => {
+        isMounted = false;
+      };
+      // fetch(
+      //   `${process.env.REACT_APP_SERVER_URL}/api/friendlist/${userAuth?._id}`
+      // )
+      //   .then((resp) => {
+      //     if (resp.ok) {
+      //       resp.json().then((respJson) => {
+      //         dispatch(getFriendListAction(respJson));
+      //       });
+      //     } else {
+      //       resp.json().then((respFalse) => {
+      //         console.log(respFalse);
+      //       });
+      //     }
+      //   })
+      //   .catch((error) => {
+      //     console.log(error);
+      //     console.log("error en la url");
+      //   });
     }
   }, [dispatch, userAuth]);
 
