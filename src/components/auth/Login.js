@@ -38,9 +38,13 @@ const STATE_INICIAL = {
 export default function Login() {
   const classes = useStyles();
   const history = useHistory();
-  const { open, error, handleChangeSignin, sigInUser } = useFormular(
-    STATE_INICIAL
-  );
+  const {
+    open,
+    circleopen,
+    error,
+    handleChangeSignin,
+    sigInUser,
+  } = useFormular(STATE_INICIAL);
   const auth = useSelector((state) => state.user.autenticate);
   const errorlogin = useSelector((state) => state.user.errorlogin);
 
@@ -94,7 +98,6 @@ export default function Login() {
                 onChange={handleChangeSignin}
               />
             </div>
-
             <button type="submit" className="register__button">
               Sign In
             </button>
@@ -108,7 +111,7 @@ export default function Login() {
         </div>
       </motion.div>
       <div>
-        <Backdrop className={classes.backdrop} open={open}>
+        <Backdrop className={classes.backdrop} open={circleopen}>
           <CircularProgress color="inherit" />
         </Backdrop>
       </div>

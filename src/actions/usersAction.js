@@ -1,4 +1,5 @@
 import clienteAxios from "../config/axios";
+
 import {
   CREATE_NEW_USER,
   ROOM_SELECTED,
@@ -10,6 +11,7 @@ import {
   CLOSE_SESION,
   GET_SIGN_IN_USER,
   LOGIN_ERROR,
+  SET_OPEN_CIRCLE,
 } from "../types";
 import tokenAuth from "./../config/tokenAuth";
 
@@ -81,8 +83,12 @@ export function signInAction(user) {
         if (resp.ok) {
           resp.json().then((respJson) => {
             // console.log(respJson);
+            dispatch(setCircleOpen(true));
             dispatch(getSignInUser(respJson));
             dispatch(getUserLogedAction());
+            setTimeout(() => {
+              dispatch(setCircleOpen(false));
+            }, 1200);
           });
         } else {
           resp.json().then((respJson) => {
@@ -99,6 +105,10 @@ export function signInAction(user) {
     }
   };
 }
+const setCircleOpen = (valor) => ({
+  type: SET_OPEN_CIRCLE,
+  payload: valor,
+});
 const getSignInUser = (token) => ({
   type: GET_SIGN_IN_USER,
   payload: token,

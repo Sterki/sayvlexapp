@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { createNewUserAction, signInAction } from "../actions/usersAction";
 import { useHistory } from "react-router-dom";
 
@@ -9,7 +9,7 @@ export function useFormular(inisialState) {
   const [checked, setChecked] = useState(false);
   const [open, setOpen] = useState(false);
   const [error, setError] = useState("");
-
+  const circleopen = useSelector((state) => state.user.circleopen);
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -99,17 +99,18 @@ export function useFormular(inisialState) {
         return setError("");
       }, 1500);
     } else {
-      setOpen(true);
-      setTimeout(() => {
-        setOpen(false);
-        dispatch(signInAction(user));
-        history.push("/panel");
-      }, 1800);
+      // setOpen(true);
+      dispatch(signInAction(user));
+      // setTimeout(() => {
+      //   setOpen(false);
+      //   history.push("/panel");
+      // }, 1500);
     }
   }
   return {
     checked,
     open,
+    circleopen,
     error,
     handleChangeFormular,
     handleSubmitUserForm,

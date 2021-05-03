@@ -19,3 +19,5 @@ export const CHATING_WITH = "CHATING_WITH";
 export const LOGIN_ERROR = "LOGIN_ERROR";
 
 export const ERROR_FRIEND_EXIST = "ERROR_FRIEND_EXIST";
+
+export const SET_OPEN_CIRCLE = "SET_OPEN_CIRCLE";

@@ -13,6 +13,7 @@ import {
   SET_MESSAGE,
   SET_MESSAGES,
   SET_MESSAGE_ARRAY,
+  SET_OPEN_CIRCLE,
 } from "../types";
 
 const inisialState = {
@@ -27,6 +28,7 @@ const inisialState = {
   chatingwith: null,
   errorlogin: null,
   errorfriend: null,
+  circleopen: false,
 };
 
 function userReducer(state = inisialState, action) {
@@ -87,6 +89,11 @@ function userReducer(state = inisialState, action) {
       return {
         ...state,
         chatingwith: action.payload,
+      };
+    case SET_OPEN_CIRCLE:
+      return {
+        ...state,
+        circleopen: action.payload,
       };
     case ERROR_FRIEND_EXIST:
       return {

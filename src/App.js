@@ -19,6 +19,8 @@ function wrappApp() {
     </Provider>
   );
 }
+
+// console.log(process.env.REACT_APP_SERVER_HEROKU);
 function App() {
   const dispatch = useDispatch();
   const token = localStorage.getItem("token");
