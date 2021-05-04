@@ -9,6 +9,7 @@ import {
   setMessagesAction,
 } from "../actions/usersAction";
 import { chatingwithAction } from "../actions/friendsAction";
+import clienteAxios from "../config/axios";
 
 export function useChat() {
   const [message, setMessage] = useState("");
@@ -124,6 +125,23 @@ export function useChat() {
       .catch((error) => console.log("error eb la url", error));
   }
 
+  const handleClickDeleteUser = (friend) => {
+    const deletefriend = async () => {
+      await clienteAxios
+        .post(`${process.env.REACT_APP_SERVER_HEROKU}/api/deletefriends/`, {
+          friend,
+        })
+        .then((resp) => {
+          if (resp.status === 200) {
+            // todo salio bien
+          } else {
+            // todo salio mal
+          }
+        });
+    };
+    deletefriend();
+  };
+
   return {
     message,
     circle,
@@ -134,6 +152,7 @@ export function useChat() {
     setMessage,
     socketRef,
     handleSubmitMessage,
+    handleClickDeleteUser,
     closeSesion,
     handleScroll,
     handleClickRoom,

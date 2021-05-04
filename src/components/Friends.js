@@ -8,7 +8,7 @@ import clienteAxios from "./../config/axios";
 
 export default function Friends() {
   const dispatch = useDispatch();
-  const { handleClickRoom, tiempo } = useChat();
+  const { handleClickRoom, handleClickDeleteUser, tiempo } = useChat();
   const friends = useSelector((state) => state.user.friends);
   const userAuth = useSelector((state) => state.user.userAuth);
 
@@ -33,24 +33,6 @@ export default function Friends() {
       return () => {
         isMounted = false;
       };
-      // fetch(
-      //   `${process.env.REACT_APP_SERVER_URL}/api/friendlist/${userAuth?._id}`
-      // )
-      //   .then((resp) => {
-      //     if (resp.ok) {
-      //       resp.json().then((respJson) => {
-      //         dispatch(getFriendListAction(respJson));
-      //       });
-      //     } else {
-      //       resp.json().then((respFalse) => {
-      //         console.log(respFalse);
-      //       });
-      //     }
-      //   })
-      //   .catch((error) => {
-      //     console.log(error);
-      //     console.log("error en la url");
-      //   });
     }
   }, [dispatch, userAuth]);
 
@@ -64,6 +46,7 @@ export default function Friends() {
               friend={friend}
               handleClickRoom={handleClickRoom}
               tiempo={tiempo}
+              handleClickDeleteUser={handleClickDeleteUser}
             />
           ))}
         </div>

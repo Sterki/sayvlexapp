@@ -16,4 +16,49 @@
   span {
     margin-left: 0.5rem;
   }
+  .friendlist__menuoptions {
+    position: relative;
+    z-index: 1;
+    display: none;
+    max-width: 100px;
+
+    .friendlist__caja {
+      position: absolute;
+      visibility: hidden;
+      border-radius: 25px;
+      background-color: rgb(47, 172, 63);
+      display: flex;
+      align-items: center;
+      padding: 0.2rem;
+
+      &:hover {
+        background-color: $backgroundPrincipal;
+        border-radius: 25px;
+      }
+    }
+  }
+  .friends__arrowoptions {
+    visibility: hidden;
+    padding: 0.3rem;
+    display: flex;
+    align-items: center;
+    border-radius: 25px;
+
+    &:hover {
+      background-color: $backgroundHover;
+      border-radius: 25px;
+    }
+  }
+  &:hover .friends__arrowoptions {
+    visibility: visible;
+    animation: animateArrow 0.1s;
+  }
+  @keyframes animateArrow {
+    from {
+      transform: translateX(100%);
+    }
+    to {
+      transform: translateX(0%);
+    }
+  }
 }

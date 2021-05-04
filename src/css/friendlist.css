@@ -23,3 +23,70 @@
 .friendlist span {
   margin-left: 0.5rem;
 }
+
+.friendlist .friendlist__menuoptions {
+  position: relative;
+  z-index: 1;
+  display: none;
+  max-width: 100px;
+}
+
+.friendlist .friendlist__menuoptions .friendlist__caja {
+  position: absolute;
+  visibility: hidden;
+  border-radius: 25px;
+  background-color: #2fac3f;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+  align-items: center;
+  padding: 0.2rem;
+}
+
+.friendlist .friendlist__menuoptions .friendlist__caja:hover {
+  background-color: #5c5c8a;
+  border-radius: 25px;
+}
+
+.friendlist .friends__arrowoptions {
+  visibility: hidden;
+  padding: 0.3rem;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+  align-items: center;
+  border-radius: 25px;
+}
+
+.friendlist .friends__arrowoptions:hover {
+  background-color: #47476b;
+  border-radius: 25px;
+}
+
+.friendlist:hover .friends__arrowoptions {
+  visibility: visible;
+  -webkit-animation: animateArrow 0.1s;
+  animation: animateArrow 0.1s;
+}
+
+@-webkit-keyframes animateArrow {
+  from {
+    -webkit-transform: translateX(100%);
+    transform: translateX(100%);
+  }
+  to {
+    -webkit-transform: translateX(0%);
+    transform: translateX(0%);
+  }
+}
+
+@keyframes animateArrow {
+  from {
+    -webkit-transform: translateX(100%);
+    transform: translateX(100%);
+  }
+  to {
+    -webkit-transform: translateX(0%);
+    transform: translateX(0%);
+  }
+}
