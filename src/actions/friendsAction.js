@@ -3,6 +3,7 @@ import {
   CHATING_WITH,
   ERROR_FRIEND_EXIST,
   GET_FRIENDS_LIST,
+  DELETE_FRIEND_FROM_LIST,
 } from "../types";
 import clienteAxios from "./../config/axios";
 
@@ -57,4 +58,15 @@ export function errorfriendAction(erroramigo) {
 const errorfriend = (erroramigo) => ({
   type: ERROR_FRIEND_EXIST,
   payload: erroramigo,
+});
+
+export function deleteFriendAction(id) {
+  console.log(id);
+  return (dispatch) => {
+    dispatch(deleteFriend(id));
+  };
+}
+const deleteFriend = (id) => ({
+  type: DELETE_FRIEND_FROM_LIST,
+  payload: id,
 });

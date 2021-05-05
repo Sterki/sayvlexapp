@@ -15,9 +15,40 @@
     .header__icon {
       display: flex;
       align-items: center;
-      p {
+
+      .header__expands {
         margin-left: 1rem;
+        display: flex;
+        align-items: center;
+        position: relative;
+        z-index: 1;
+        .MuiSvgIcon-root {
+          cursor: pointer;
+        }
+        .header__menu {
+          position: absolute;
+          background-color: $buttonBackground;
+          width: 140px;
+          visibility: hidden;
+          top: 100%;
+          left: -60%;
+          border-radius: 5px;
+          text-align: center;
+          p {
+            padding: 0.3rem;
+            cursor: pointer;
+          }
+          p {
+            &:hover {
+              background-color: $backgroundHover;
+              border-radius: 5px;
+            }
+          }
+        }
       }
+    }
+    .header__icon > p {
+      margin-left: 1rem;
     }
   }
 }

@@ -3,6 +3,7 @@ import {
   CHATING_WITH,
   CLOSE_SESION,
   CREATE_NEW_USER,
+  DELETE_FRIEND_FROM_LIST,
   ERROR_FRIEND_EXIST,
   GET_FRIENDS_LIST,
   GET_SIGN_IN_USER,
@@ -94,6 +95,16 @@ function userReducer(state = inisialState, action) {
       return {
         ...state,
         circleopen: action.payload,
+      };
+    case DELETE_FRIEND_FROM_LIST:
+      return {
+        ...state,
+        friends: state.friends.filter(
+          (friend) => friend._id !== action.payload
+        ),
+        chatingwith: null,
+        roomSelected: null,
+        roomSelected: null,
       };
     case ERROR_FRIEND_EXIST:
       return {

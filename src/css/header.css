@@ -25,6 +25,41 @@
   align-items: center;
 }
 
-.header .header__container .header__icon p {
+.header .header__container .header__icon .header__expands {
+  margin-left: 1rem;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+.header .header__container .header__icon .header__expands .MuiSvgIcon-root {
+  cursor: pointer;
+}
+
+.header .header__container .header__icon .header__expands .header__menu {
+  position: absolute;
+  background-color: #3d3d5c;
+  width: 140px;
+  visibility: hidden;
+  top: 100%;
+  left: -60%;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.header .header__container .header__icon .header__expands .header__menu p {
+  padding: 0.3rem;
+  cursor: pointer;
+}
+
+.header .header__container .header__icon .header__expands .header__menu p:hover {
+  background-color: #47476b;
+  border-radius: 5px;
+}
+
+.header .header__container .header__icon > p {
   margin-left: 1rem;
 }
