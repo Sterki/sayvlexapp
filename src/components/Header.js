@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./../scss/header.scss";
 import Avatar from "@material-ui/core/Avatar";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
@@ -6,9 +6,21 @@ import { useSelector } from "react-redux";
 import { LightTooltip } from "./ui/tooltip";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { useChat } from "../hooks/useChat";
+import ErrorIcon from "@material-ui/icons/Error";
+import { motion } from "framer-motion";
+
+const containerVarianst = {
+  hidden: { x: "50vw", opacity: 0 },
+  show: {
+    x: "0vw",
+    opacity: 1,
+    transition: { delay: 0.1, ease: "easeOut" },
+  },
+};
 
 export default function Header() {
   const chatingwith = useSelector((state) => state.user.chatingwith);
+  const [open, setOpen] = useState(false);
   const { handleClickdelete } = useChat();
   function handleClickVisible(e) {
     e.preventDefault();
@@ -33,6 +45,13 @@ export default function Header() {
     },
     false
   );
+
+  function handleClickOpenDelete() {
+    setOpen(true);
+  }
+  function handleClickCloseDelete() {
+    setOpen(false);
+  }
   return (
     <div className="header">
       <div className="header__container">
@@ -47,15 +66,7 @@ export default function Header() {
               <ExpandMoreIcon onClick={handleClickVisible} />
               <div className="header__menu" id="menuoption">
                 <p>Add to favorites</p>
-                <p
-                  onClick={(e) =>
-                    handleClickdelete(
-                      chatingwith._id ? chatingwith._id : chatingwith.id
-                    )
-                  }
-                >
-                  Delete friend
-                </p>
+                <p onClick={handleClickOpenDelete}>Delete friend</p>
               </div>
             </div>
           </div>
@@ -71,6 +82,34 @@ export default function Header() {
           </LightTooltip>
         </div>
       </div>
+      {open && (
+        <motion.div
+          className="header__modaldelete"
+          variants={containerVarianst}
+          initial="hidden"
+          animate="show"
+        >
+          <div className="header__icondelete">
+            <ErrorIcon />
+          </div>
+          <div className="header__textdelete">
+            <p>Do u want to delete the user: {chatingwith?.username}</p>
+          </div>
+          <div className="header__optionesdelete">
+            <button
+              onClick={(e) => {
+                handleClickdelete(
+                  chatingwith._id ? chatingwith._id : chatingwith.id
+                );
+                setOpen(false);
+              }}
+            >
+              Delete
+            </button>
+            <button onClick={handleClickCloseDelete}>Cancel</button>
+          </div>
+        </motion.div>
+      )}
     </div>
   );
 }

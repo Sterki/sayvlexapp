@@ -20,8 +20,11 @@
     .chat__emoji {
       position: absolute;
       visibility: hidden;
-      top: 57%;
+      top: 56%;
       left: 70%;
+      background-color: $backgroundPrincipal;
+      .chat__emojipicker {
+      }
     }
     .chat__circle {
       display: flex;
@@ -135,25 +138,46 @@
       flex: 0 1 8%;
       height: 5rem;
       display: flex;
+      position: relative;
       border-top: 1px solid $borderColor;
       background-image: url(../static//img/dcecf9b2.png);
       background-repeat: repeat;
+
       .chat__emojibutton {
         display: flex;
         align-items: center;
         flex: 0 0 5%;
         .MuiSvgIcon-root {
+          border-radius: 50%;
+          &:hover {
+            background-color: $buttonBackground;
+          }
+        }
+        .MuiSvgIcon-root:nth-child(2) {
           color: rgb(252, 200, 57);
           cursor: pointer;
+          padding: 0.4rem;
+          width: 2rem;
+          height: 2rem;
+        }
+        .MuiSvgIcon-root:nth-child(1) {
+          color: $colorText;
+          cursor: pointer;
+          margin-right: 0.3rem;
+          width: 2rem;
+          height: 2rem;
         }
       }
       input {
         flex: 0 1 90%;
-        border: 1px solid lightgrey;
         margin-right: 1rem;
         border-radius: 20px;
         outline: none;
-        padding-left: 1rem;
+        font-size: 1rem;
+        color: $colorText;
+        border: none;
+        padding-left: 3rem;
+        background-color: $borderColor;
       }
       button {
         flex: 0 0 5%;
@@ -175,6 +199,20 @@
           border-radius: 50%;
         }
       }
+    }
+  }
+  .chat__input > .MuiSvgIcon-root {
+    position: absolute;
+    top: 27%;
+    left: 1.5%;
+    color: $colorText;
+    cursor: pointer;
+    padding: 0.3rem;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    &:hover {
+      background-color: $buttonBackground;
     }
   }
 }

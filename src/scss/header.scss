@@ -2,6 +2,7 @@
 .header {
   background-color: $backgroundPrincipal;
   color: white;
+  position: relative;
   .header__container {
     display: flex;
     padding: 0.7rem;
@@ -49,6 +50,62 @@
     }
     .header__icon > p {
       margin-left: 1rem;
+    }
+  }
+  .header__modaldelete {
+    background-color: $buttonBackground;
+    width: 100%;
+    max-width: 320px;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    left: 25%;
+    top: 105%;
+    z-index: 1;
+    box-shadow: 1px 2px 10px 1px $buttonBackground;
+    .header__icondelete {
+      .MuiSvgIcon-root {
+        width: 3rem;
+        height: 3rem;
+      }
+    }
+    .header__textdelete {
+      padding: 0.8rem;
+    }
+    .header__optionesdelete {
+      display: flex;
+      width: 100%;
+      justify-content: space-around;
+      padding: 0.4rem;
+      button {
+        padding: 0.3rem;
+        flex: 0 1 40%;
+        border: 1px solid $colorText;
+        color: $colorText;
+        border-radius: 4px;
+        cursor: pointer;
+        outline: none;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+      button:first-of-type {
+        background-color: $buttonBackground;
+        transition: all 0.2s;
+
+        &:hover {
+          background-color: $colorText;
+          color: $buttonBackground;
+        }
+      }
+      button:last-of-type {
+        background-color: $colorText;
+        color: $buttonBackground;
+        &:hover {
+          background-color: $buttonBackground;
+          color: $colorText;
+        }
+      }
     }
   }
 }

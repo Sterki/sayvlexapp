@@ -7,6 +7,8 @@ import Message from "./Message";
 import SendIcon from "@material-ui/icons/Send";
 import Picker from "emoji-picker-react";
 import EmojiEmotionsIcon from "@material-ui/icons/EmojiEmotions";
+import GifIcon from "@material-ui/icons/Gif";
+import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
 
 export default function Chat() {
   const [emoticon, setEmoticon] = useState(false);
@@ -92,10 +94,20 @@ export default function Chat() {
           {roomRedux ? (
             <>
               <div className="chat__emoji" id="emojiicons">
-                <Picker onEmojiClick={onEmojiClick} id="pickerr" />
+                <Picker
+                  onEmojiClick={onEmojiClick}
+                  id="pickerr"
+                  native={false}
+                  pickerStyle={{
+                    backgroundColor: "#5c5c8a",
+                    boxShadow: "1px 2px 10px 1px #3d3d5c",
+                    border: "none",
+                    color: "#2c3e50",
+                  }}
+                />
               </div>
-
               <div className="chat__input">
+                <AddCircleOutlineIcon />
                 <input
                   type="text"
                   id="inputchat"
@@ -106,6 +118,7 @@ export default function Chat() {
                   value={message}
                 />
                 <div className="chat__emojibutton">
+                  <GifIcon />
                   <EmojiEmotionsIcon onClick={handleClickOpenEmoticon} />
                 </div>
 

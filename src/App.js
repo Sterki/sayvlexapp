@@ -46,7 +46,7 @@ function App() {
                 <Chat />
               </div>
               <div className="app__sidebarright">
-                <h1>sidebar right</h1>
+                <h1>Groups</h1>
               </div>
             </div>
           </Route>

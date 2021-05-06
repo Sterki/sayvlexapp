@@ -2,6 +2,7 @@
 .header {
   background-color: #5c5c8a;
   color: white;
+  position: relative;
 }
 
 .header .header__container {
@@ -62,4 +63,72 @@
 
 .header .header__container .header__icon > p {
   margin-left: 1rem;
+}
+
+.header .header__modaldelete {
+  background-color: #3d3d5c;
+  width: 100%;
+  max-width: 320px;
+  position: absolute;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  align-items: center;
+  left: 25%;
+  top: 105%;
+  z-index: 1;
+  box-shadow: 1px 2px 10px 1px #3d3d5c;
+}
+
+.header .header__modaldelete .header__icondelete .MuiSvgIcon-root {
+  width: 3rem;
+  height: 3rem;
+}
+
+.header .header__modaldelete .header__textdelete {
+  padding: 0.8rem;
+}
+
+.header .header__modaldelete .header__optionesdelete {
+  display: -webkit-flex;
+  display: flex;
+  width: 100%;
+  -webkit-justify-content: space-around;
+  justify-content: space-around;
+  padding: 0.4rem;
+}
+
+.header .header__modaldelete .header__optionesdelete button {
+  padding: 0.3rem;
+  -webkit-flex: 0 1 40%;
+  flex: 0 1 40%;
+  border: 1px solid #e0e0eb;
+  color: #e0e0eb;
+  border-radius: 4px;
+  cursor: pointer;
+  outline: none;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.header .header__modaldelete .header__optionesdelete button:first-of-type {
+  background-color: #3d3d5c;
+  transition: all 0.2s;
+}
+
+.header .header__modaldelete .header__optionesdelete button:first-of-type:hover {
+  background-color: #e0e0eb;
+  color: #3d3d5c;
+}
+
+.header .header__modaldelete .header__optionesdelete button:last-of-type {
+  background-color: #e0e0eb;
+  color: #3d3d5c;
+}
+
+.header .header__modaldelete .header__optionesdelete button:last-of-type:hover {
+  background-color: #3d3d5c;
+  color: #e0e0eb;
 }
