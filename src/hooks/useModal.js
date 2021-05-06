@@ -12,7 +12,7 @@ export function useModal(inisialState) {
   const friendlist = useSelector((state) => state.user.friends);
 
   const handleChange = (e) => {
-    setFriend({ ...friend, [e.target.name]: e.target.value });
+    setFriend({ ...friend, [e.target.name]: e.target.value.toUpperCase() });
   };
   const handleClickSubmit = (user) => {
     dispatch(addFriendAction(user));

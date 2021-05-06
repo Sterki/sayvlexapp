@@ -20,6 +20,12 @@ export function useFormular(inisialState) {
     console.log("desde el handleChage");
     setChecked(e.target.checked);
   };
+  const usuariouppercase = {
+    name: user.name?.toUpperCase(),
+    username: user.username?.toUpperCase(),
+    email: user.email?.toUpperCase(),
+    password: user?.password,
+  };
   function handleSubmitUserForm(e) {
     e.preventDefault();
     if (user.username.trim() === "") {
@@ -48,7 +54,7 @@ export function useFormular(inisialState) {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(user),
+        body: JSON.stringify(usuariouppercase),
       })
         .then((resp) => {
           if (resp.ok) {
@@ -100,7 +106,7 @@ export function useFormular(inisialState) {
       }, 1500);
     } else {
       // setOpen(true);
-      dispatch(signInAction(user));
+      dispatch(signInAction(usuariouppercase));
       // setTimeout(() => {
       //   setOpen(false);
       //   history.push("/panel");

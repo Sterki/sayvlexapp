@@ -27,22 +27,42 @@ export default function Chat() {
 
   const onEmojiClick = (event, emojiObject) => {
     let input = document.getElementById("inputchat");
-    console.log(input);
+    // console.log(input);
     input.value = emojiObject.emoji;
     // setMessage(emojiObject);
     // setMessage(emojiObject);
-    console.log(emojiObject);
+    // console.log(emojiObject);
     setMessage((prevState) => prevState + input.value);
-    console.log(message);
+    // console.log(message);
   };
 
   const handleClickOpenEmoticon = (e) => {
-    if (!emoticon) {
-      setEmoticon(true);
+    e.preventDefault();
+    e.stopPropagation();
+    let div = document.querySelector("#emojiicons");
+    if (div.style.visibility === "visible") {
+      div.style.visibility = "hidden";
     } else {
-      setEmoticon(false);
+      div.style.visibility = "visible";
     }
   };
+  document.addEventListener(
+    "click",
+    (e) => {
+      let div = document.querySelector("#emojiicons");
+      let pickerr = document.querySelector("#pickerr");
+      if (div === null) return;
+      let click = e.target;
+      if (
+        div.style.visibility === "visible" &&
+        click.tagName !== "IMG" &&
+        click.tagName !== "BUTTON"
+      ) {
+        div.style.visibility = "hidden";
+      }
+    },
+    false
+  );
   return (
     <div className="chat">
       <div className="chat__container">
@@ -71,11 +91,9 @@ export default function Chat() {
           )}
           {roomRedux ? (
             <>
-              {emoticon ? (
-                <div className="chat__emoji">
-                  <Picker onEmojiClick={onEmojiClick} />
-                </div>
-              ) : null}
+              <div className="chat__emoji" id="emojiicons">
+                <Picker onEmojiClick={onEmojiClick} id="pickerr" />
+              </div>
 
               <div className="chat__input">
                 <input
